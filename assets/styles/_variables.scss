@@ -46,12 +46,11 @@ $cyans: () !default;
 // fusv-enable
 
 // scss-docs-start theme-color-variables
-$primary:       #0d6efd !default;
-$secondary:     $gray-600 !default;
-$success:       #198754 !default;
-$info:          #0dcaf0 !default;
-$warning:       #ffc107 !default;
-$danger:        #dc3545 !default;
+$primary:       #bc002d !default;
+$success:       #33a867 !default; // Was: 198754
+$info:          #21a2da !default; // Was: #0dcaf0
+$warning:       #e39c1b !default; // Was: #ffc107
+$danger:        #e73737 !default; // Was: #dc3545
 $light:         $gray-100 !default;
 $dark:          $gray-900 !default;
 // scss-docs-end theme-color-variables
@@ -59,7 +58,6 @@ $dark:          $gray-900 !default;
 // scss-docs-start theme-colors-map
 $theme-colors: (
         "primary":    $primary,
-        "secondary":  $secondary,
         "success":    $success,
         "info":       $info,
         "warning":    $warning,
@@ -83,3 +81,30 @@ $escaped-characters: (
 // Quickly modify global styling by enabling or disabling optional features.
 
 $enable-shadows:              true !default;
+
+$container-padding-x: 5rem !default;
+
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1400px
+) !default;
+
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1140px,
+        xxl: 1200px
+) !default;
+
+$navbar-dark-color:                 rgba($white, .65) !default;
+$navbar-dark-hover-color:           rgba($white, .75) !default;
+$navbar-dark-active-color:          $white !default;
+$navbar-dark-disabled-color:        rgba($white, .25) !default;
+$navbar-dark-toggler-border-color:  rgba($white, .1) !default;
+$navbar-dark-brand-color:           $navbar-dark-active-color !default;
+$navbar-dark-brand-hover-color:     $navbar-dark-active-color !default;

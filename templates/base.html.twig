@@ -6,11 +6,14 @@
     <title>{% block title %}Bienvenue!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
 
+    <script src="https://kit.fontawesome.com/94a36ec1da.js" crossorigin="anonymous"></script>
     {% block javascripts %}{% endblock %}
 </head>
 <body>
-{% include 'common/components/_navbar.html.twig' %}
-{% block body %}{% endblock %}
+<div class="container">
+    {% include 'common/components/_navbar.html.twig' %}
+    {% block body %}{% endblock %}
+</div>
 {% include 'common/components/_footer.html.twig' %}
 </body>
 </html>
