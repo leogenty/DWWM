@@ -20,7 +20,11 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production --progress"
+        "build": "encore production --progress",
+        "phpcsfixer": "./vendor/bin/php-cs-fixer fix --diff -v",
+        "phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 2G",
+        "phpstan:baseline": "vendor/bin/phpstan analyse -c phpstan.neon --generate-baseline --memory-limit 2G",
+        "test:e2e": "export HTTP_PROXY=http://127.0.0.1:7080/ && export NO_PROXY=localhost && yarn run cypress open --config-file ./e2e/cypress.json"
     },
     "dependencies": {
         "@popperjs/core": "^2.11.6",
