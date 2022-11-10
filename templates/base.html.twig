@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Bienvenue!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+
+    {% block javascripts %}{% endblock %}
+</head>
+<body>
+{% include 'common/components/_navbar.html.twig' %}
+{% block body %}{% endblock %}
+{% include 'common/components/_footer.html.twig' %}
+</body>
+</html>
