@@ -24,7 +24,7 @@
                         <button class="nav-link" id="logs-tab" data-bs-toggle="tab" data-bs-target="#logs-tab-pane" type="button" role="tab" aria-controls="logs-tab-pane" aria-selected="false"><span class="fa-duotone fa-fw fa-clock-rotate-left me-2"></span>Historique d'activité</button>
                     </li>
                     <li class="nav-item mb-3" role="presentation">
-                        <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security-tab-pane" type="button" role="tab" aria-controls="security-tab-pane" aria-selected="false"><span class="fa-duotone fa-fw fa-vault me-2"></span>Mot de passe - Sécurité</button>
+                        <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security-tab-pane" type="button" role="tab" aria-controls="security-tab-pane" aria-selected="false"><span class="fa-duotone fa-fw fa-vault me-2"></span>Sécurité - Mot de passe</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="delete-tab" data-bs-toggle="tab" data-bs-target="#delete-tab-pane" type="button" role="tab" aria-controls="delete-tab-pane" aria-selected="false"><span class="fa-duotone fa-fw fa-transporter-2 me-2"></span>Supprimer mon compte</button>
@@ -34,21 +34,44 @@
         </div>
         <div class="flex-fill">
             <div class="card">
-                <div class="card-body">
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-                            {% include 'app/pages/profile/_index.html.twig' %}
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                        <div class="card-header">
+                            <h2 class="text-primary text-decoration-underline">Informations générales</h2>
                         </div>
-                        <div class="tab-pane fade" id="statistics-tab-pane" role="tabpanel" aria-labelledby="statistics-tab" tabindex="0">
+                        <div class="card-body">
+                        {% include 'app/pages/profile/_index.html.twig' %}
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="statistics-tab-pane" role="tabpanel" aria-labelledby="statistics-tab" tabindex="0">
+                        <div class="card-header">
+                            <h2 class="text-primary text-decoration-underline">Statistiques / Progression</h2>
+                        </div>
+                        <div class="card-body">
                             {% include 'app/pages/profile/_statistics.html.twig' %}
                         </div>
-                        <div class="tab-pane fade" id="logs-tab-pane" role="tabpanel" aria-labelledby="logs-tab" tabindex="0">
+                    </div>
+                    <div class="tab-pane fade" id="logs-tab-pane" role="tabpanel" aria-labelledby="logs-tab" tabindex="0">
+                        <div class="card-header">
+                            <h2 class="text-primary text-decoration-underline">Historique d'activité</h2>
+                        </div>
+                        <div class="card-body">
                             {% include 'app/pages/profile/_logs.html.twig' %}
                         </div>
-                        <div class="tab-pane fade" id="security-tab-pane" role="tabpanel" aria-labelledby="security-tab" tabindex="0">
+                    </div>
+                    <div class="tab-pane fade" id="security-tab-pane" role="tabpanel" aria-labelledby="security-tab" tabindex="0">
+                        <div class="card-header">
+                            <h2 class="text-primary text-decoration-underline">Sécurité - Mot de passe</h2>
+                        </div>
+                        <div class="card-body">
                             {% include 'app/pages/profile/_security.html.twig' %}
                         </div>
-                        <div class="tab-pane fade" id="delete-tab-pane" role="tabpanel" aria-labelledby="delete-tab" tabindex="0">
+                    </div>
+                    <div class="tab-pane fade" id="delete-tab-pane" role="tabpanel" aria-labelledby="delete-tab" tabindex="0">
+                        <div class="card-header">
+                            <h2 class="text-primary text-decoration-underline">Supprimer mon compte</h2>
+                        </div>
+                        <div class="card-body">
                             {% include 'app/pages/profile/_delete.html.twig' %}
                         </div>
                     </div>

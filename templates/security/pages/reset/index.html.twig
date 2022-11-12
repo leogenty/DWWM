@@ -9,5 +9,12 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="text-primary">Security - Reset Pwd</h1>
+    <h1 class="text-primary">Réinitialisation du mot de passe</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.oldPassword) }}
+        {{ form_row(form.newPassword.first) }}
+        {{ form_row(form.newPassword.second) }}
+        <button class="btn btn-lg btn-primary" type="submit">Enregistrer les modifications</button>
+    {{ form_end(form) }}
 {% endblock %}

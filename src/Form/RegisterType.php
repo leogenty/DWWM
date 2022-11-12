@@ -37,7 +37,7 @@ class RegisterType extends AbstractType
                 'label' => 'Nom',
             ])
             ->add('name', TextType::class, [
-                'label' => 'Nom d\'utilisateur',
+                'label' => 'Nom d\'utilisateur (Visible par les autres utilisateurs)',
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,

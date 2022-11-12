@@ -33,6 +33,7 @@ class SecurityController extends AbstractController
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, ManagerRegistry $managerRegistry): Response
     {
         $user = new User();
+
         $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
 

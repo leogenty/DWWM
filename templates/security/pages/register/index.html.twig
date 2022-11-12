@@ -9,10 +9,10 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="text-primary">Security - Register</h1>
+    <h1 class="text-primary text-center mb-3">Créer ton compte</h1>
 
     {{ form_start(form) }}
-    <div class="card">
+    <div class="card mx-auto w-50">
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-md-6">
@@ -22,20 +22,24 @@
                     {{ form_row(form.lastname) }}
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 col-md-4">
-                    {{ form_row(form.email) }}
-                </div>
-                <div class="col-12 col-md-4">
+            <div class="row>">
+                <div class="col-12 col-md-10">
                     {{ form_row(form.name) }}
                 </div>
-                <div class="col-12 col-md-4">
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-8">
+                    {{ form_row(form.email) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-8">
                     {{ form_row(form.password) }}
                 </div>
             </div>
             {{ form_row(form.agreeTerms) }}
 
-            <button type="submit" class="btn btn-outline-primary">Créer son compte</button>
+            <button type="submit" class="btn btn-outline-primary">Enregistrer</button>
         </div>
     </div>
     {{ form_end(form) }}
