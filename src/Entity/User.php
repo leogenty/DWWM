@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -37,6 +38,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 128)]
     private ?string $name = null;
+
+    #[ORM\Column(type: Types::SMALLINT)]
+    private ?int $progression = null;
 
     public function getId(): ?int
     {
@@ -140,6 +144,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getProgression(): ?int
+    {
+        return $this->progression;
+    }
+
+    public function setProgression(int $progression): self
+    {
+        $this->progression = $progression;
 
         return $this;
     }

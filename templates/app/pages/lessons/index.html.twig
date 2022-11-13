@@ -9,5 +9,34 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="text-primary">Lessons</h1>
+    <h1 class="text-primary text-center mb-3">Liste des leçons</h1>
+
+    <div class="card text-bg-light">
+        <div class="card-body">
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
+                <div class="me-auto">
+                    <h3 class="{% if app.user.progression < 1 %}text-warning text-decoration-underline{% else %}text-success text-decoration-underline{% endif %}">Leçon n°1 : bases</h3>
+                    Description
+                </div>
+                <a class="btn btn-info text-white" href="">Commencer</a>
+            </li>
+            <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
+                <div class="me-auto">
+                    <h3 class="{% if app.user.progression < 2 %}text-warning text-decoration-underline{% else %}text-success text-decoration-underline{% endif %}">Leçon n°1 : chez paw</h3>
+                    Description
+                </div>
+                <a class="btn {% if app.user.progression < 1 %}btn-outline-info disabled{% else %}btn-info text-white{% endif %}" href="">Commencer</a>
+            </li>
+            <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
+                <div class="me-auto">
+                    <h3 class="{% if app.user.progression < 3 %}text-warning text-decoration-underline{% else %}text-success text-decoration-underline{% endif %}">Leçon n°1 : tout jour pa</h3>
+                    Description
+                </div>
+                <a class="btn {% if app.user.progression < 2 %}btn-outline-info disabled{% else %}btn-info text-white{% endif %}" href="">Commencer</a>
+            </li>
+        </ul>
+        </div>
+    </div>
 {% endblock %}
