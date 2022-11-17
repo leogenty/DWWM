@@ -40,7 +40,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $name = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $progression = null;
+    private ?int $progression = 0;
 
     public function getId(): ?int
     {

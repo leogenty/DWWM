@@ -40,6 +40,7 @@ class RegisterType extends AbstractType
                 'label' => 'Nom d\'utilisateur (Visible par les autres utilisateurs)',
             ])
             ->add('agreeTerms', CheckboxType::class, [
+                'label' => 'Accepter les conditions',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegisterType;
+use App\Repository\UserRepository;
 use App\Security\AppAuthenticator;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,9 +46,21 @@ class SecurityController extends AbstractController
             return $userAuthenticator->authenticateUser($user, $authenticator, $request);
         }
 
-        return $this->render('security/pages/register/index.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        return $this->render('security/pages/register/index.html.twig', ['form' => $form->createView()]);
+    }
+
+    #[Route(path: '/delete', name: 'app_delete')]
+    public function deleteUser(Request $request, UserRepository $userRepository, ManagerRegistry $managerRegistry)
+    {
+        $user = $this->getUser();
+
+        $this->container->get('security.token_storage')->setToken(null);
+        $userRepository->remove($user);
+        $managerRegistry->getManager()->flush();
+        $request->getSession()->invalidate();
+
+        $this->addFlash('success', 'Compte supprimé.');
+        return $this->redirectToRoute('front_home');
     }
 
     #[Route(path: '/logout', name: 'app_logout')]

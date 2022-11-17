@@ -4,19 +4,17 @@ namespace App\Controller;
 
 use App\Entity\ResetPassword;
 use App\Form\ResetPasswordType;
-use App\Security\AppAuthenticator;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
-class ChangePasswordController extends AbstractController
+class ResetPasswordController extends AbstractController
 {
     #[Route(path: '/reset-password', name: 'security_pages_reset')]
-    public function settings(Request $request, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $managerRegistry, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator): Response
+    public function settings(Request $request, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $managerRegistry): Response
     {
         $reset = new ResetPassword();
         $user = $this->getUser();

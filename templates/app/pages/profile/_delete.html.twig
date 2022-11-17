@@ -1,1 +1,21 @@
-<p>TODO</p>
+<a class="btn btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal">
+    <span class="fa-duotone fa-fw fa-key me-2"></span>Supprimer mon compte
+</a>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Suppression de compte</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Veux-tu vraiment supprimer ton compte ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
+                <a type="button" class="btn btn-primary" href="{{ path('app_delete') }}">Supprimer</a>
+            </div>
+        </div>
+    </div>
+</div>
