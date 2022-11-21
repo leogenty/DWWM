@@ -60,6 +60,7 @@ class SecurityController extends AbstractController
         $request->getSession()->invalidate();
 
         $this->addFlash('success', 'Compte supprimé.');
+
         return $this->redirectToRoute('front_home');
     }
 
