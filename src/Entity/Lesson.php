@@ -33,6 +33,12 @@ class Lesson
         $this->blocks = new ArrayCollection();
     }
 
+    // add this function manually to render string in Admin Dashboard
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
