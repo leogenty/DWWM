@@ -7,6 +7,9 @@
                     <a class="nav-link {% if app.request.get('_route') == 'front_home' %}active{% endif %}" {% if app.request.get('_route') == 'front_home' %}aria-current="page"{% endif%}href="{{ path('front_home') }}">Accueil</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {% if app.request.get('_route') == 'front_matter' %}active{% endif %}" {% if app.request.get('_route') == 'front_matter' %}aria-current="page"{% endif%}href="{{ path('front_matter') }}">Matières</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link {% if app.request.get('_route') == 'app_lessons' %}active{% endif %}" {% if app.request.get('_route') == 'app_lessons' %}aria-current="page"{% endif%}href="{{ path('app_lessons') }}">Leçons</a>
                 </li>
                 <li class="nav-item">

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('front_pages_matter') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('front_pages_matter') }}
+{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+        <h2>Bienvenue {{ app.user.name }} !</h2>
+    {% else %}
+        <div class="row mb-3">
+            <div class="col text-center">
+                <h3>TODO <br>Pas de compte</h3>
+                <a class="btn btn-warning btn-lg" href="{{ path('app_login') }}">Connexion</a>
+            </div>
+        </div>
+    {% endif %}
+
+    {#
+    <div class="row row-cols-1 row-cols-lg-2 gx-5">
+        {% for category in categories %}
+            <div class="col">
+                <div class="card text-bg-light mb-3">
+                    <div class="card-header">
+                        <h2>{{ category.name }}</h2>
+                    </div>
+                    {% for matter in matters|sort((a, b) => a.name <=> b.name) %}
+                        {% if matter.category == category.name %}
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item fs-4">{{ matter.name }}</li>
+                        </ul>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    #}
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-5">
+        {% for category in categories %}
+            <div class="accordion mb-3" id="accordionDescription{{ category.id }}">
+                <div class="accordion-item">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#id{{ category.id }}" aria-expanded="true" aria-controls="id{{ category.id }}">
+                        <h2 class="accordion-header">
+                            {{ category.name }}
+                        </h2>
+                    </button>
+                    {% for matter in matters|sort((a, b) => a.name <=> b.name) %}
+                        {% if matter.category == category.name %}
+                        <div id="id{{ category.id }}" class="accordion-collapse collapse show" data-bs-parent="#accordionDescription{{ category.id }}">
+                            <hr class="m-0">
+                            <a class="list-group-item py-2 px-4 fs-4" href="{{ path('app_lessons') }}">
+                                {{ matter.name }}
+                            </a>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

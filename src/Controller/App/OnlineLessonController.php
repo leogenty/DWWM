@@ -13,7 +13,7 @@ class OnlineLessonController extends AbstractController
     public function index(OnlineLessonRepository $onlineLessonRepository): Response
     {
         return $this->render('app/pages/online-lessons/index.html.twig', [
-            'onlineLesson' => $onlineLessonRepository->findAll(),
+            'onlineLessons' => $onlineLessonRepository->findAll(),
         ]);
     }
 }
