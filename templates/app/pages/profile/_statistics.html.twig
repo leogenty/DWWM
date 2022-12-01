@@ -1,6 +1,6 @@
 <h2 class="text-info mb-4">Chapitre 1</h2>
 
-<div class="position-relative m-4">
+{# <div class="position-relative m-4">
     <div class="progress" style="height: 2px;">
         <div class="progress-bar bg-success" role="progressbar" aria-label="Progress"
              {% if app.user.progression == 0 %}style="width:0;"{% endif %}
@@ -19,23 +19,8 @@
     <button type="button" class="position-absolute top-0 translate-middle btn btn-sm rounded-pill {% if app.user.progression >= 4 %} btn-success {% else %} btn-outline-success {% endif %}" style="width: 2rem; height:2rem; margin-left: 66%;">4</button>
     <button type="button" class="position-absolute top-0 translate-middle btn btn-sm rounded-pill {% if app.user.progression >= 5 %} btn-success {% else %} btn-outline-success {% endif %}" style="width: 2rem; height:2rem; margin-left: 83%;">5</button>
     <button type="button" class="position-absolute top-0 translate-middle btn btn-sm rounded-pill {% if app.user.progression >= 6 %} btn-success {% else %} btn-outline-success {% endif %}" style="width: 2rem; height:2rem; margin-left: 100%;">6</button>
-</div>
+</div> #}
 
 <hr class="border border-dark mx-auto mt-5 mb-3 w-75">
 
 <h2 class="text-info mb-4">Chapitre 2</h2>
-
-<div class="position-relative m-4">
-    <div class="progress" style="height: 2px;">
-        <div class="progress-bar btn-warning" role="progressbar" aria-label="Progress"
-             {% if app.user.progression == 7 %}style="width:0;"{% endif %}
-                {% if app.user.progression == 8 %}style="width:33%;"{% endif %}
-                {% if app.user.progression == 9 %}style="width:66%;"{% endif %}
-                {% if app.user.progression == 10 %}style="width:100%;"{% endif %}
-             aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-    <button type="button" class="position-absolute top-0 translate-middle btn btn-sm rounded-pill {% if app.user.progression >= 7 %} btn-warning {% else %} btn-outline-warning {% endif %}" style="width: 2rem; height:2rem; margin-left: 0;">0</button>
-    <button type="button" class="position-absolute top-0 translate-middle btn btn-sm rounded-pill {% if app.user.progression >= 8 %} btn-warning {% else %} btn-outline-warning {% endif %}" style="width: 2rem; height:2rem; margin-left: 33%;">1</button>
-    <button type="button" class="position-absolute top-0 translate-middle btn btn-sm rounded-pill {% if app.user.progression >= 9 %} btn-warning {% else %} btn-outline-warning {% endif %}" style="width: 2rem; height:2rem; margin-left: 66%;">2</button>
-    <button type="button" class="position-absolute top-0 translate-middle btn btn-sm rounded-pill {% if app.user.progression >= 10 %} btn-warning {% else %} btn-outline-warning {% endif %}" style="width: 2rem; height:2rem; margin-left: 100%;">3</button>
-</div>

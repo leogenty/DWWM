@@ -42,13 +42,4 @@ class LessonsController extends AbstractController
             'blocks' => $managerRegistry->getRepository(Block::class)->findAll(),
         ]);
     }
-
-    #[Route('app/lessons/', name: 'aaa')]
-    public function updateProgression(Request $request, ManagerRegistry $managerRegistry): Response
-    {
-        $user = $this->getUser();
-        $schemaManager = $this->getDoctrine()->getConnection()->getSchemaManager();
-
-        //return $this->redirectToRoute('app_lessons', ['matter' => ]);
-    }
 }
