@@ -10,7 +10,7 @@
                     <a class="nav-link {% if app.request.get('_route') == 'front_matter' %}active{% endif %}" {% if app.request.get('_route') == 'front_matter' %}aria-current="page"{% endif%}href="{{ path('front_matter') }}">Matières</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if app.request.get('_route') == 'app_lessons' %}active{% endif %}" {% if app.request.get('_route') == 'app_lessons' %}aria-current="page"{% endif%}href="{{ path('app_lessons') }}">Leçons</a>
+                    <a class="nav-link {% if app.request.get('_route') == 'app_lessons' %}active{% endif %}" {% if app.request.get('_route') == 'app_lessons' %}aria-current="page"{% endif%}href="{{ path('app_lessons', {'title' : 'a'}) }}">Leçons</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {% if app.request.get('_route') == 'app_online_lesson' %}active{% endif %}" {% if app.request.get('_route') == 'app_online_lesson' %}aria-current="page"{% endif%}href="{{ path('app_online_lesson') }}">Cours en ligne</a>

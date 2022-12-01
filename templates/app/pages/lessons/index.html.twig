@@ -11,99 +11,29 @@
 {% block body %}
     <h1 class="text-primary text-center mb-3">Liste des leçons</h1>
 
-    <h2 class="text-info mb-2 ms-3">Chapitre 1 : Présentations générales</h2>
-    <div class="card text-bg-light">
+
+
+    {% for chapter in chapters %}
+    <h2 class="text-info mb-2 ms-3">Chapitre {{ chapter.numbering }} : {{ chapter.name }}</h2>
+
+    <div class="card text-bg-light mb-5">
         <div class="card-body">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
-                    <div class="me-auto">
-                        <h3 class="{% if app.user.progression < 1 %}text-warning text-decoration-underline{% else %}text-success text-decoration-underline{% endif %}">Leçon n°1 : Présentation des hiragana</h3>
-                        Description
-                    </div>
-                    <a class="btn btn-info text-white" href="">Commencer</a>
-                </li>
-
-                <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
-                    <div class="me-auto">
-                        <h3 class="{% if app.user.progression < 2 %}text-warning text-decoration-underline{% else %}text-success text-decoration-underline{% endif %}">Leçon n°2 : Présentation des katakana</h3>
-                        Description
-                    </div>
-                    <a class="btn {% if app.user.progression < 1 %}btn-outline-info disabled{% else %}btn-info text-white{% endif %}" href="">Commencer</a>
-                </li>
-
-                <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
-                    <div class="me-auto">
-                        <h3 class="{% if app.user.progression < 3 %}text-warning text-decoration-underline{% else %}text-success text-decoration-underline{% endif %}">Leçon n°3 : Bien tracer et apprendre les kana</h3>
-                        Description
-                    </div>
-                    <a class="btn {% if app.user.progression < 2 %}btn-outline-info disabled{% else %}btn-info text-white{% endif %}" href="">Commencer</a>
-                </li>
-
-                <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
-                    <div class="me-auto">
-                        <h3 class="{% if app.user.progression < 4 %}text-warning text-decoration-underline{% else %}text-success text-decoration-underline{% endif %}">Leçon n°4 : Présentation des kanji</h3>
-                        Description
-                    </div>
-                    <a class="btn {% if app.user.progression < 3 %}btn-outline-info disabled{% else %}btn-info text-white{% endif %}" href="">Commencer</a>
-                </li>
-
-                <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
-                    <div class="me-auto">
-                        <h3 class="{% if app.user.progression < 5 %}text-warning text-decoration-underline{% else %}text-success text-decoration-underline{% endif %}">Leçon n°5 : Présentation des rōmaji</h3>
-                        Description
-                    </div>
-                    <a class="btn {% if app.user.progression < 4 %}btn-outline-info disabled{% else %}btn-info text-white{% endif %}" href="">Commencer</a>
-                </li>
-
-                <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
-                    <div class="me-auto">
-                        <h3 class="{% if app.user.progression < 6 %}text-warning text-decoration-underline{% else %}text-success text-decoration-underline{% endif %}">Leçon n°6 : Présentation des arabiasūji</h3>
-                        Description
-                    </div>
-                    <a class="btn {% if app.user.progression < 5 %}btn-outline-info disabled{% else %}btn-info text-white{% endif %}" href="">Commencer</a>
-                </li>
+                {% for lesson in lessons|sort((a, b) => a.numbering <=> b.numbering) %}
+                    {% if lesson.chapter == chapter.name %}
+                        <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
+                            <div class="me-auto">
+                                <h3 class="{% if app.user.progression < 1 %}text-warning text-decoration-underline{% else %}text-success text-decoration-underline{% endif %}">Leçon n°{{ lesson.numbering }}. {{ lesson.name }}</h3>
+                                // TODO resume column in Lesson Entity
+                            </div>
+                            <a class="btn btn-info text-white" href="">Commencer</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
             </ul>
         </div>
     </div>
-
-    <h2 class="text-info mb-2 ms-3 mt-4">Chapitre 2 : Les quatre règles d’utilisation des kana</h2>
-    <div class="card text-bg-light">
-        <div class="card-body">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
-                    <div class="me-auto">
-                        <h3 class="{% if app.user.progression < 7 %}text-warning text-decoration-underline{% else %}text-success text-decoration-underline{% endif %}">Leçon n°7 : Les accents</h3>
-                        Description
-                    </div>
-                    <a class="btn {% if app.user.progression < 6 %}btn-outline-info disabled{% else %}btn-info text-white{% endif %}" href="">Commencer</a>
-                </li>
-
-                <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
-                    <div class="me-auto">
-                        <h3 class="{% if app.user.progression < 8 %}text-warning text-decoration-underline{% else %}text-success text-decoration-underline{% endif %}">Leçon n°8 : La pause</h3>
-                        Description
-                    </div>
-                    <a class="btn {% if app.user.progression < 7 %}btn-outline-info disabled{% else %}btn-info text-white{% endif %}" href="">Commencer</a>
-                </li>
-
-                <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
-                    <div class="me-auto">
-                        <h3 class="{% if app.user.progression < 9 %}text-warning text-decoration-underline{% else %}text-success text-decoration-underline{% endif %}">Leçon n°9 : Les allongements</h3>
-                        Description
-                    </div>
-                    <a class="btn {% if app.user.progression < 8 %}btn-outline-info disabled{% else %}btn-info text-white{% endif %}" href="">Commencer</a>
-                </li>
-
-                <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
-                    <div class="me-auto">
-                        <h3 class="{% if app.user.progression < 10 %}text-warning text-decoration-underline{% else %}text-success text-decoration-underline{% endif %}">Leçon n°10 : Les combinaisons</h3>
-                        Description
-                    </div>
-                    <a class="btn {% if app.user.progression < 9 %}btn-outline-info disabled{% else %}btn-info text-white{% endif %}" href="">Commencer</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    {% endfor %}
 
     <h2 class="text-primary text-decoration-underline ms-3 my-4">Documents supplémentaire</h2>
     <div class="row justify-content-center p-0 mb-4">
