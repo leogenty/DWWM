@@ -28,9 +28,13 @@ class Chapter
     #[ORM\OneToMany(mappedBy: 'chapter', targetEntity: Lesson::class)]
     private Collection $lessons;
 
+    #[ORM\OneToMany(mappedBy: 'chapter', targetEntity: Progression::class)]
+    private Collection $progressions;
+
     public function __construct()
     {
         $this->lessons = new ArrayCollection();
+        $this->progressions = new ArrayCollection();
     }
 
     // add this function manually to render string in Admin Dashboard
@@ -104,6 +108,36 @@ class Chapter
             // set the owning side to null (unless already changed)
             if ($lesson->getChapter() === $this) {
                 $lesson->setChapter(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Progression>
+     */
+    public function getProgressions(): Collection
+    {
+        return $this->progressions;
+    }
+
+    public function addProgression(Progression $progression): self
+    {
+        if (!$this->progressions->contains($progression)) {
+            $this->progressions->add($progression);
+            $progression->setChapter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgression(Progression $progression): self
+    {
+        if ($this->progressions->removeElement($progression)) {
+            // set the owning side to null (unless already changed)
+            if ($progression->getChapter() === $this) {
+                $progression->setChapter(null);
             }
         }
 

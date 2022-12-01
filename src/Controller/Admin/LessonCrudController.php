@@ -20,6 +20,7 @@ class LessonCrudController extends AbstractCrudController
         return [
             TextField::new('name'),
             IntegerField::new('numbering'),
+            TextField::new('resume'),
             AssociationField::new('chapter'),
         ];
     }

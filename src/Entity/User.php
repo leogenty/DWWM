@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -39,8 +41,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 128)]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::SMALLINT, options: ['default' => 0])]
-    private ?int $progression = 0;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Progression::class)]
+    private Collection $progressions;
+
+    public function __construct()
+    {
+        $this->progressions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -148,14 +155,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getProgression(): ?int
+    /**
+     * @return Collection<int, Progression>
+     */
+    public function getProgressions(): Collection
     {
-        return $this->progression;
+        return $this->progressions;
     }
 
-    public function setProgression(int $progression): self
+    public function addProgression(Progression $progression): self
     {
-        $this->progression = $progression;
+        if (!$this->progressions->contains($progression)) {
+            $this->progressions->add($progression);
+            $progression->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgression(Progression $progression): self
+    {
+        if ($this->progressions->removeElement($progression)) {
+            // set the owning side to null (unless already changed)
+            if ($progression->getUser() === $this) {
+                $progression->setUser(null);
+            }
+        }
 
         return $this;
     }

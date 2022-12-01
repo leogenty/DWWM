@@ -28,6 +28,9 @@ class Lesson
     #[ORM\OneToMany(mappedBy: 'lesson', targetEntity: Block::class)]
     private Collection $blocks;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $resume = null;
+
     public function __construct()
     {
         $this->blocks = new ArrayCollection();
@@ -106,6 +109,18 @@ class Lesson
                 $block->setLesson(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getResume(): ?string
+    {
+        return $this->resume;
+    }
+
+    public function setResume(?string $resume): self
+    {
+        $this->resume = $resume;
 
         return $this;
     }

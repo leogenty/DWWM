@@ -20,27 +20,6 @@
         </div>
     {% endif %}
 
-    {#
-    <div class="row row-cols-1 row-cols-lg-2 gx-5">
-        {% for category in categories %}
-            <div class="col">
-                <div class="card text-bg-light mb-3">
-                    <div class="card-header">
-                        <h2>{{ category.name }}</h2>
-                    </div>
-                    {% for matter in matters|sort((a, b) => a.name <=> b.name) %}
-                        {% if matter.category == category.name %}
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item fs-4">{{ matter.name }}</li>
-                        </ul>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-    #}
-
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-5">
         {% for category in categories %}
             <div class="accordion mb-3" id="accordionDescription{{ category.id }}">
@@ -54,7 +33,7 @@
                         {% if matter.category == category.name %}
                         <div id="id{{ category.id }}" class="accordion-collapse collapse show" data-bs-parent="#accordionDescription{{ category.id }}">
                             <hr class="m-0">
-                            <a class="list-group-item py-2 px-4 fs-4" href="{{ path('app_lessons', {'title' : matter.name}) }}">
+                            <a class="list-group-item py-2 px-4 fs-4" href="{{ path('app_lessons', {'matter' : matter.name}) }}">
                                 {{ matter.name }}
                             </a>
                         </div>
