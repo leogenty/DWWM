@@ -23,7 +23,7 @@ class Chapter
 
     #[ORM\ManyToOne(inversedBy: 'chapters')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Matter $matter = null;
+    private ?Type $type = null;
 
     #[ORM\OneToMany(mappedBy: 'chapter', targetEntity: Lesson::class)]
     private Collection $lessons;
@@ -68,18 +68,6 @@ class Chapter
     public function setNumbering(int $numbering): self
     {
         $this->numbering = $numbering;
-
-        return $this;
-    }
-
-    public function getMatter(): ?Matter
-    {
-        return $this->matter;
-    }
-
-    public function setMatter(?Matter $matter): self
-    {
-        $this->matter = $matter;
 
         return $this;
     }
@@ -140,6 +128,18 @@ class Chapter
                 $progression->setChapter(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

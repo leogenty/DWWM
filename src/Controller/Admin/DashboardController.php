@@ -9,6 +9,7 @@ use App\Entity\Lesson;
 use App\Entity\Matter;
 use App\Entity\OnlineLesson;
 use App\Entity\Progression;
+use App\Entity\Type;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -37,6 +38,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('User', 'fas fa-list', User::class);
         yield MenuItem::linkToCrud('Category', 'fas fa-screen-users', Category::class);
         yield MenuItem::linkToCrud('Matter', 'fas fa-screen-users', Matter::class);
+        yield MenuItem::linkToCrud('Type', 'fas fa-screen-users', Type::class);
         yield MenuItem::linkToCrud('Chapter', 'fas fa-screen-users', Chapter::class);
         yield MenuItem::linkToCrud('Lesson', 'fas fa-screen-users', Lesson::class);
         yield MenuItem::linkToCrud('Block', 'fas fa-screen-users', Block::class);

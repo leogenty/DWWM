@@ -21,15 +21,15 @@ class Lesson
     #[ORM\Column]
     private ?int $numbering = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $resume = null;
+
     #[ORM\ManyToOne(inversedBy: 'lessons')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Chapter $chapter = null;
 
     #[ORM\OneToMany(mappedBy: 'lesson', targetEntity: Block::class)]
     private Collection $blocks;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $resume = null;
 
     public function __construct()
     {

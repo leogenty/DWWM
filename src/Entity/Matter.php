@@ -22,12 +22,12 @@ class Matter
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
-    #[ORM\OneToMany(mappedBy: 'matter', targetEntity: Chapter::class)]
-    private Collection $chapters;
+    #[ORM\OneToMany(mappedBy: 'matter', targetEntity: Type::class)]
+    private Collection $types;
 
     public function __construct()
     {
-        $this->chapters = new ArrayCollection();
+        $this->types = new ArrayCollection();
     }
 
     // add this function manually to render string in Admin Dashboard
@@ -89,6 +89,36 @@ class Matter
             // set the owning side to null (unless already changed)
             if ($chapter->getMatter() === $this) {
                 $chapter->setMatter(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Type>
+     */
+    public function getTypes(): Collection
+    {
+        return $this->types;
+    }
+
+    public function addType(Type $type): self
+    {
+        if (!$this->types->contains($type)) {
+            $this->types->add($type);
+            $type->setMatter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeType(Type $type): self
+    {
+        if ($this->types->removeElement($type)) {
+            // set the owning side to null (unless already changed)
+            if ($type->getMatter() === $this) {
+                $type->setMatter(null);
             }
         }
 

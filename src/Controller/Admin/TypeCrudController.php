@@ -2,18 +2,18 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Chapter;
+use App\Entity\Type;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class ChapterCrudController extends AbstractCrudController
+class TypeCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Chapter::class;
+        return Type::class;
     }
 
     public function configureFields(string $pageName): iterable
@@ -21,7 +21,7 @@ class ChapterCrudController extends AbstractCrudController
         return [
             TextField::new('name'),
             IntegerField::new('numbering'),
-            AssociationField::new('type'),
+            AssociationField::new('matter'),
         ];
     }
 }
