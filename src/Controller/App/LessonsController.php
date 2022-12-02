@@ -6,6 +6,7 @@ use App\Entity\Block;
 use App\Entity\Chapter;
 use App\Entity\Lesson;
 use App\Entity\Matter;
+use App\Entity\Type;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +38,8 @@ class LessonsController extends AbstractController
         // $this->renderRoute($request);
 
         return $this->render('app/pages/lessons/index.html.twig', [
-            'chapters' => $managerRegistry->getRepository(Chapter::class)->findBy(['matter' => $managerRegistry->getRepository(Matter::class)->findOneBy(['name' => $request->get('matter')])]),
+            'types' => $managerRegistry->getRepository(Type::class)->findBy(['matter' => $managerRegistry->getRepository(Matter::class)->findOneBy(['name' => $request->get('matter')])]),
+            'chapters' => $managerRegistry->getRepository(Chapter::class)->findAll(),
             'lessons' => $managerRegistry->getRepository(Lesson::class)->findAll(),
             'blocks' => $managerRegistry->getRepository(Block::class)->findAll(),
         ]);

@@ -19,6 +19,7 @@ class TypeCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            IdField::new('id')->hideOnForm(),
             TextField::new('name'),
             IntegerField::new('numbering'),
             AssociationField::new('matter'),

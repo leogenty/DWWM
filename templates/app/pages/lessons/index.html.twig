@@ -13,66 +13,126 @@
 {% block body %}
     <h1 class="text-success text-center mb-5">Liste des leçons</h1>
 
-    <div class="card-body align-self-center mb-4">
+    {% set count = 0 %}
+    {% for type in types %}
+        {% set count = count + 1 %}
+    {% endfor %}
+
+    {# <div class="card-body align-self-center mb-4">
         <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
             <li class="nav-item">
-                <button class="nav-link active" id="lesson-tab" data-bs-toggle="tab" data-bs-target="#lesson" role="tab" aria-controls="lesson" aria-selected="true"><i class="far fa-user me-2"></i>Leçon</button>
+                <button class="nav-link active" id="aaa-tab" data-bs-toggle="tab" data-bs-target="#aaa" role="tab" aria-controls="aaa" aria-selected="true"><i class="far fa-user me-2"></i>aaa</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="bbb-tab" data-bs-toggle="tab" data-bs-target="#bbb" role="tab" aria-controls="bbb" aria-selected="true"><i class="far fa-user me-2"></i>bbb</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="ccc-tab" data-bs-toggle="tab" data-bs-target="#ccc" role="tab" aria-controls="ccc" aria-selected="true"><i class="far fa-user me-2"></i>ccc</button>
             </li>
         </ul>
     </div>
 
-
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="lesson" role="tabpanel" aria-labelledby="lesson-tab">
-            Leçons
-        </div>
-    </div>
-
-
-    {% for chapter in chapters %}
-    <h2 class="text-info mb-2 ms-3">Chapitre {{ chapter.numbering }} : {{ chapter.name }}</h2>
-
-    <div class="card text-bg-light mb-5">
-        <div class="card-body">
-            <ul class="list-group list-group-flush">
-                {% for lesson in lessons|sort((a, b) => a.numbering <=> b.numbering) %}
-                    {% if lesson.chapter == chapter.name %}
+        <div class="tab-pane fade show active" id="aaa" role="tabpanel" aria-labelledby="aaa-tab">
+        <h2 class="text-info mb-2 ms-3">Chapitre 1 : aaa</h2>
+            <div class="card text-bg-light mb-5">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
                         <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
                             <div class="me-auto">
-                                <h3 class="{# {% if app.user < lesson.numbering %} #}text-warning text-decoration-underline{# {% else %}text-success text-decoration-underline{% endif %} #}">Leçon n°{{ lesson.numbering }}. - {{ lesson.name }}</h3>
-                                {{ lesson.resume }}
+                                <h3 class="text-warning text-decoration-underline">Leçon n°1. - aaa</h3>
                             </div>
-                            <a class="btn {# {% if app.user < lesson.numbering - 1 %} #}btn-outline-info {# disabled{% else %}btn-info text-white{% endif %} #}" data-bs-toggle="modal" data-bs-target="#modalLesson{{ lesson.id }}">Commencer</a>
 
-                            <div class="modal fade" id="modalLesson{{ lesson.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <a class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modalLessonaaa">Commencer</a>
+                            <div class="modal fade" id="modalLessonaaa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title text-info fs-2" id="exampleModalLabel">Leçon n°{{ lesson.numbering }} : {{ lesson.name }}</h1>
+                                            <h1 class="modal-title text-info fs-2" id="exampleModalLabel">Leçon n°1 : aaa</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            {% for block in blocks|sort((a, b) => a.numbering <=> b.numbering) %}
-                                                {% if block.lesson == lesson.name %}
-                                                        <p class="fs-5">{{ block.content }}</p>
-                                                {% endif %}
-                                            {% endfor %}
+                                            <p class="fs-5">aaa aaa</p>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
-                                            <a type="button" class="btn btn-success text-white" href="{{ path('app_lessons', {'matter' : chapter.matter}) }}">Terminer</a>
+                                            <a type="button" class="btn btn-success text-white" href="#">Terminer</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                         </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
+                    </ul>
+                </div>
+            </div>
         </div>
+    </div> #}
+
+
+    <div class="card-body align-self-center mb-4">
+        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+            {% if count > 1 %}
+                {% for type in types|sort((a, b) => a.numbering <=> b.numbering) %}
+                    <li class="nav-item">
+                        <button class="nav-link {% if type.numbering == 1 %}active{% endif %}" id="{{ type.name }}-tab" data-bs-toggle="tab" data-bs-target="#{{ type.name }}" role="tab" aria-controls="{{ type.name }}" aria-selected="true"><i class="far fa-user me-2"></i>{{ type.name }}</button>
+                    </li>
+                {% endfor %}
+            {% else %}
+            {% endif %}
+        </ul>
     </div>
-    {% endfor %}
+
+    <div class="tab-content" id="myTabContent">
+        {% for type in types %}
+            {% for chapter in chapters %}
+                {% if chapter.type == type.name %}
+                    <div class="tab-pane fade show active" id="{{ type.name }}" role="tabpanel" aria-labelledby="{{ type.name }}-tab">
+                    <h2 class="text-info mb-2 ms-3">Chapitre {{ chapter.numbering }} : {{ chapter.name }}</h2>
+                        <div class="card text-bg-light mb-5">
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    {% for lesson in lessons|sort((a, b) => a.numbering <=> b.numbering) %}
+                                        {% if lesson.chapter == chapter.name %}
+                                            <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
+                                                <div class="me-auto">
+                                                <h3 class="{# {% if app.user < lesson.numbering %} #}text-warning text-decoration-underline{# {% else %}text-success text-decoration-underline{% endif %} #}">Leçon n°{{ lesson.numbering }}. - {{ lesson.name }}</h3>
+                                                {{ lesson.resume }}
+                                                </div>
+                                                <a class="btn {# {% if app.user < lesson.numbering - 1 %} #}btn-outline-info {# disabled{% else %}btn-info text-white{% endif %} #}" data-bs-toggle="modal" data-bs-target="#modalLesson{{ lesson.id }}">Commencer</a>
+                                                    <div class="modal fade" id="modalLesson{{ lesson.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title text-info fs-2" id="exampleModalLabel">Leçon n°{{ lesson.numbering }} : {{ lesson.name }}</h1>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                {% for block in blocks|sort((a, b) => a.numbering <=> b.numbering) %}
+                                                                    {% if block.lesson == lesson.name %}
+                                                                        <p class="fs-5">{{ block.content }}</p>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
+                                                                <a type="button" class="btn btn-success text-white" href="{{ path('app_lessons', {'matter' : type.matter}) }}">Terminer</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+
 
     <h2 class="text-primary text-decoration-underline ms-3 my-4">Documents supplémentaire</h2>
     <div class="row justify-content-center p-0 mb-4">
