@@ -11,9 +11,6 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage;
 use Symfony\Component\Routing\Annotation\Route;
 
 class LessonsController extends AbstractController
@@ -43,5 +40,9 @@ class LessonsController extends AbstractController
             'lessons' => $managerRegistry->getRepository(Lesson::class)->findAll(),
             'blocks' => $managerRegistry->getRepository(Block::class)->findAll(),
         ]);
+
+        // form with input hidden type with userID and chapterID
+        // or
+        // bool if true create row with userID and chapterID
     }
 }

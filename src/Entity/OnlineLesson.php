@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OnlineLessonRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -34,6 +36,14 @@ class OnlineLesson
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $class_link = null;
+
+    #[ORM\ManyToMany(targetEntity: Language::class, inversedBy: 'onlineLessons')]
+    private Collection $language;
+
+    public function __construct()
+    {
+        $this->language = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +130,30 @@ class OnlineLesson
     public function setClassLink(string $class_link): self
     {
         $this->class_link = $class_link;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Language>
+     */
+    public function getLanguage(): Collection
+    {
+        return $this->language;
+    }
+
+    public function addLanguage(Language $language): self
+    {
+        if (!$this->language->contains($language)) {
+            $this->language->add($language);
+        }
+
+        return $this;
+    }
+
+    public function removeLanguage(Language $language): self
+    {
+        $this->language->removeElement($language);
 
         return $this;
     }

@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Block;
 use App\Entity\Category;
 use App\Entity\Chapter;
+use App\Entity\Language;
 use App\Entity\Lesson;
 use App\Entity\Matter;
 use App\Entity\OnlineLesson;
@@ -44,5 +45,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Block', 'fas fa-screen-users', Block::class);
         yield MenuItem::linkToCrud('Online Lesson', 'fas fa-screen-users', OnlineLesson::class);
         yield MenuItem::linkToCrud('Progression', 'fas fa-screen-users', Progression::class);
+        yield MenuItem::linkToCrud('Language', 'fas fa-screen-users', Language::class);
     }
 }

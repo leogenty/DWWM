@@ -18,64 +18,12 @@
         {% set count = count + 1 %}
     {% endfor %}
 
-    {# <div class="card-body align-self-center mb-4">
-        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
-            <li class="nav-item">
-                <button class="nav-link active" id="aaa-tab" data-bs-toggle="tab" data-bs-target="#aaa" role="tab" aria-controls="aaa" aria-selected="true"><i class="far fa-user me-2"></i>aaa</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link" id="bbb-tab" data-bs-toggle="tab" data-bs-target="#bbb" role="tab" aria-controls="bbb" aria-selected="true"><i class="far fa-user me-2"></i>bbb</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link" id="ccc-tab" data-bs-toggle="tab" data-bs-target="#ccc" role="tab" aria-controls="ccc" aria-selected="true"><i class="far fa-user me-2"></i>ccc</button>
-            </li>
-        </ul>
-    </div>
-
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="aaa" role="tabpanel" aria-labelledby="aaa-tab">
-        <h2 class="text-info mb-2 ms-3">Chapitre 1 : aaa</h2>
-            <div class="card text-bg-light mb-5">
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
-                            <div class="me-auto">
-                                <h3 class="text-warning text-decoration-underline">Leçon n°1. - aaa</h3>
-                            </div>
-
-                            <a class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modalLessonaaa">Commencer</a>
-                            <div class="modal fade" id="modalLessonaaa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title text-info fs-2" id="exampleModalLabel">Leçon n°1 : aaa</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p class="fs-5">aaa aaa</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
-                                            <a type="button" class="btn btn-success text-white" href="#">Terminer</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div> #}
-
-
     <div class="card-body align-self-center mb-4">
         <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
             {% if count > 1 %}
                 {% for type in types|sort((a, b) => a.numbering <=> b.numbering) %}
                     <li class="nav-item">
-                        <button class="nav-link {% if type.numbering == 1 %}active{% endif %}" id="{{ type.name }}-tab" data-bs-toggle="tab" data-bs-target="#{{ type.name }}" role="tab" aria-controls="{{ type.name }}" aria-selected="true"><i class="far fa-user me-2"></i>{{ type.name }}</button>
+                        <button class="nav-link {% if type.numbering == 1 %}active{% endif %}" id="{{ type.name }}-tab" data-bs-toggle="tab" data-bs-target="#{{ type.name }}" role="tab" aria-controls="{{ type.name }}" aria-selected="true"><i class="far fa-book-open-cover me-2"></i>{{ type.name }}</button>
                     </li>
                 {% endfor %}
             {% else %}
@@ -84,11 +32,11 @@
     </div>
 
     <div class="tab-content" id="myTabContent">
-        {% for type in types %}
-            {% for chapter in chapters %}
-                {% if chapter.type == type.name %}
-                    <div class="tab-pane fade show active" id="{{ type.name }}" role="tabpanel" aria-labelledby="{{ type.name }}-tab">
-                    <h2 class="text-info mb-2 ms-3">Chapitre {{ chapter.numbering }} : {{ chapter.name }}</h2>
+        {% for type in types|sort((a, b) => a.numbering <=> b.numbering) %}
+            <div class="tab-pane fade{% if type.numbering == 1 %} active show{% else %}{% endif %}" id="{{ type.name }}" role="tabpanel" aria-labelledby="{{ type.name }}-tab">
+                {% for chapter in chapters|sort((a, b) => a.numbering <=> b.numbering) %}
+                    {% if chapter.type == type.name %}
+                        <h2 class="text-info mb-2 ms-3">Chapitre {{ chapter.numbering }} : {{ chapter.name }}</h2>
                         <div class="card text-bg-light mb-5">
                             <div class="card-body">
                                 <ul class="list-group list-group-flush">
@@ -127,9 +75,9 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                {% endif %}
-            {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </div>
         {% endfor %}
     </div>
 
@@ -142,7 +90,7 @@
                 <hr class="m-0">
                 <div class="card-body">
                     <h3>Tableau des hiragana</h3>
-                    <a class="btn btn-info text-white btn-lg mx-auto" href="/assets/medias/images/jpl-logo.jpg" download="logo.png">Télécharger le document</a>
+                    <a class="btn btn-info text-white btn-lg mx-auto" download="logo.png">Télécharger le document</a>
                 </div>
             </div>
         </div>
@@ -152,7 +100,7 @@
                 <hr class="m-0">
                 <div class="card-body">
                     <h3>Tableau des katakana</h3>
-                    <a class="btn btn-info text-white btn-lg mx-auto" href="/assets/medias/images/jpl-logo.jpg" download="logo.png">Télécharger le document</a>
+                    <a class="btn btn-info text-white btn-lg mx-auto" download="logo.png">Télécharger le document</a>
                 </div>
             </div>
         </div>

@@ -14,33 +14,38 @@
     <h1 class="text-warning">Liste des cours en ligne disponible</h1>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        {% for row in onlineLessons %}
+        {% for onlineLesson in onlineLessons %}
         <div class="col">
             <div class="card text-bg-light mb-3">
+                <div class="card-header">
+                    <h4 class="card-title text-success text-decoration-underline me-auto">Cours : {{ onlineLesson.title }}</h4>
+                    {% for language in onlineLesson.getLanguage() %}
+                            <h5><span class="badge text-bg-info text-white h-100 fa-pull-right">{{ language.name }}</span></h5>
+                    {% endfor %}
+                </div>
                 <div class="card-body">
-                    <h4 class="card-title text-success text-decoration-underline">Leçon : {{ row.title }}</h4>
                     <p class="card-text">
-                        {{ row.author }}<br>
-                        Début : {{ row.startAt | date("F jS \\a\\t g:ia") }}<br>
-                        Fin : {{ row.endAt | date("F jS \\a\\t g:ia") }}<br>
-                        <a class="btn btn-outline-warning" href="{{ row.classLink }}">Lien vers la salle de cours</a><br>
-                        Nombre de participants : {{ row.nbParticipants }}<br>
+                        {{ onlineLesson.author }}<br>
+                        Début : {{ onlineLesson.startAt | date("F jS \\a\\t g:ia") }}<br>
+                        Fin : {{ onlineLesson.endAt | date("F jS \\a\\t g:ia") }}<br>
+                        <a class="btn btn-outline-warning" href="{{ onlineLesson.classLink }}">Lien vers la salle de cours</a><br>
+                        Nombre de participants : {{ onlineLesson.nbParticipants }}<br>
                     </p>
                     <div class="accordion mb-3" id="accordionDescription">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#id{{ row.id }}" aria-expanded="true" aria-controls="id{{ row.id }}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#id{{ onlineLesson.id }}" aria-expanded="true" aria-controls="id{{ onlineLesson.id }}">
                                     Description
                                 </button>
                             </h2>
-                            <div id="id{{ row.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionDescription">
+                            <div id="id{{ onlineLesson.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionDescription">
                                 <div class="accordion-body">
-                                    {{ row.description }}
+                                    {{ onlineLesson.description }}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <a class="btn btn-info text-white ms-auto" href="">Participer</a>
+                    <a class="btn btn-info text-white fa-pull-right" href="">Participer</a>
                 </div>
             </div>
         </div>
