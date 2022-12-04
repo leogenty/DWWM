@@ -11,9 +11,9 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="text-primary">Profil</h1>
-    <div class="d-flex flex-column flex-lg-row">
-        <div class="card mb-4 mb-lg-0 me-0 me-lg-4 h-100">
+    <h1 class="text-primary my-4">Profil</h1>
+    <div class="d-flex flex-column flex-lg-row mb-5">
+        <div class="card mb-lg-0 me-0 me-lg-4 h-100">
             <div class="card-body bg-light">
                 <ul class="nav nav-pills flex-column" id="myTab" role="tablist">
                     <li class="nav-item mb-3" role="presentation">
@@ -22,9 +22,9 @@
                     <li class="nav-item mb-3" role="presentation">
                         <button class="nav-link" id="statistics-tab" data-bs-toggle="tab" data-bs-target="#statistics-tab-pane" type="button" role="tab" aria-controls="statistics-tab-pane" aria-selected="false"><span class="fa-duotone fa-fw fa-list-timeline me-2"></span>Statistiques / Progression</button>
                     </li>
-                    <li class="nav-item mb-3" role="presentation">
+                    {# <li class="nav-item mb-3" role="presentation">
                         <button class="nav-link" id="logs-tab" data-bs-toggle="tab" data-bs-target="#logs-tab-pane" type="button" role="tab" aria-controls="logs-tab-pane" aria-selected="false"><span class="fa-duotone fa-fw fa-clock-rotate-left me-2"></span>Historique d'activité</button>
-                    </li>
+                    </li> #}
                     <li class="nav-item mb-3" role="presentation">
                         <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security-tab-pane" type="button" role="tab" aria-controls="security-tab-pane" aria-selected="false"><span class="fa-duotone fa-fw fa-vault me-2"></span>Sécurité - Mot de passe</button>
                     </li>
@@ -34,7 +34,7 @@
                 </ul>
             </div>
         </div>
-        <div class="flex-fill">
+        <div class="flex-fill mb-5">
             <div class="card">
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
