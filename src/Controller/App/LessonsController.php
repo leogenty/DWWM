@@ -15,31 +15,22 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LessonsController extends AbstractController
 {
-    /* public function renderRoute(Request $request)
-    {
-        $route = $request->attributes->get('matter');
-
-        $session = new Session(new NativeSessionStorage(), new AttributeBag());
-        $session->set('matterMemory', $route);
-
-        if ('redirect' == $route) {
-            return $this->redirectToRoute('front_matter');
-        } else {
-            return $this->redirectToRoute('app_lessons', ['matter' => $session]);
-        }
-    } */
-
     #[Route('app/lessons/{matter}', name: 'app_lessons')]
     public function index(Request $request, ManagerRegistry $managerRegistry): Response
     {
-        // $this->renderRoute($request);
+        $routeParameters = $request->attributes->get('_route_params');
 
-        return $this->render('app/pages/lessons/index.html.twig', [
-            'types' => $managerRegistry->getRepository(Type::class)->findBy(['matter' => $managerRegistry->getRepository(Matter::class)->findOneBy(['name' => $request->get('matter')])]),
-            'chapters' => $managerRegistry->getRepository(Chapter::class)->findAll(),
-            'lessons' => $managerRegistry->getRepository(Lesson::class)->findAll(),
-            'blocks' => $managerRegistry->getRepository(Block::class)->findAll(),
-        ]);
+        if (['matter' => 'redirect'] == $routeParameters) {
+            $this->addFlash('warning', 'Sélectionnez une matière pour accéder aux leçons associées.');
+            return $this->redirectToRoute('front_matter');
+        } else {
+            return $this->render('app/pages/lessons/index.html.twig', [
+                'types' => $managerRegistry->getRepository(Type::class)->findBy(['matter' => $managerRegistry->getRepository(Matter::class)->findOneBy(['name' => $request->get('matter')])]),
+                'chapters' => $managerRegistry->getRepository(Chapter::class)->findAll(),
+                'lessons' => $managerRegistry->getRepository(Lesson::class)->findAll(),
+                'blocks' => $managerRegistry->getRepository(Block::class)->findAll(),
+            ]);
+        }
 
         // form with input hidden type with userID and chapterID
         // or
