@@ -39,7 +39,7 @@ class Lesson
     // add this function manually to render string in Admin Dashboard
     public function __toString()
     {
-        return $this->name;
+        return $this->getChapter().' : '.$this->name;
     }
 
     public function getId(): ?int

@@ -40,7 +40,7 @@ class Chapter
     // add this function manually to render string in Admin Dashboard
     public function __toString()
     {
-        return $this->name;
+        return $this->getType().' : '.$this->name;
     }
 
     public function getId(): ?int

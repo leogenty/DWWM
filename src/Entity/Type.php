@@ -36,7 +36,7 @@ class Type
     // add this function manually to render string in Admin Dashboard
     public function __toString()
     {
-        return $this->name.' from "'.$this->getMatter().'"';
+        return $this->getMatter().' : '.$this->name;
     }
 
     public function getId(): ?int
