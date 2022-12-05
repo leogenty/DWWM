@@ -28,9 +28,13 @@ class Type
     #[ORM\OneToMany(mappedBy: 'type', targetEntity: Chapter::class)]
     private Collection $chapters;
 
+    #[ORM\OneToMany(mappedBy: 'type', targetEntity: Progression::class)]
+    private Collection $progressions;
+
     public function __construct()
     {
         $this->chapters = new ArrayCollection();
+        $this->progressions = new ArrayCollection();
     }
 
     // add this function manually to render string in Admin Dashboard
@@ -104,6 +108,36 @@ class Type
             // set the owning side to null (unless already changed)
             if ($chapter->getType() === $this) {
                 $chapter->setType(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Progression>
+     */
+    public function getProgressions(): Collection
+    {
+        return $this->progressions;
+    }
+
+    public function addProgression(Progression $progression): self
+    {
+        if (!$this->progressions->contains($progression)) {
+            $this->progressions->add($progression);
+            $progression->setType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgression(Progression $progression): self
+    {
+        if ($this->progressions->removeElement($progression)) {
+            // set the owning side to null (unless already changed)
+            if ($progression->getType() === $this) {
+                $progression->setType(null);
             }
         }
 

@@ -20,7 +20,8 @@ class Progression
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'progressions')]
-    private ?Chapter $chapter = null;
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Type $type = null;
 
     public function getId(): ?int
     {
@@ -51,14 +52,14 @@ class Progression
         return $this;
     }
 
-    public function getChapter(): ?Chapter
+    public function getType(): ?Type
     {
-        return $this->chapter;
+        return $this->type;
     }
 
-    public function setChapter(?Chapter $chapter): self
+    public function setType(?Type $type): self
     {
-        $this->chapter = $chapter;
+        $this->type = $type;
 
         return $this;
     }
