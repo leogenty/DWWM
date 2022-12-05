@@ -1,11 +1,11 @@
 {% set count = 0 %}
-{% for type in types %}
-    {% set count = count + 1 %}
-{% endfor %}
+    {% for type in types %}
+        {% set count = count + 1 %}
+    {% endfor %}
 
 <div class="card-body align-self-center mb-4">
     <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
-        {% if count > 1 %}
+        {% if count > 0 %}
             {% for type in types|sort((a, b) => a.numbering <=> b.numbering) %}
                 <li class="nav-item">
                     <button class="nav-link {% if type.numbering == 1 %}active{% endif %}" id="{{ type.name }}-tab" data-bs-toggle="tab" data-bs-target="#{{ type.name }}" role="tab" aria-controls="{{ type.name }}" aria-selected="true"><i class="far fa-book-open-cover me-2"></i>{{ type.name }}</button>
@@ -20,21 +20,23 @@
     {% for type in types|sort((a, b) => a.numbering <=> b.numbering) %}
         <div class="tab-pane fade{% if type.numbering == 1 %} active show{% else %}{% endif %}" id="{{ type.name }}" role="tabpanel" aria-labelledby="{{ type.name }}-tab">
             {% for chapter in chapters|sort((a, b) => a.numbering <=> b.numbering) %}
-                {% if chapter.type == type.name %}
+                {% set typeName = type.matter ~ ' : ' ~ type.name %}
+                {% if chapter.type == typeName %}
                     <h2 class="text-info mb-2 ms-3">Chapitre {{ chapter.numbering }} : {{ chapter.name }}</h2>
                     <div class="card text-bg-light mb-5">
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
                                 {% for lesson in lessons|sort((a, b) => a.numbering <=> b.numbering) %}
-                                    {% if lesson.chapter == chapter.name %}
+                                    {% set chapterName = typeName ~ ' : ' ~ chapter.name %}
+                                    {% if lesson.chapter == chapterName %}
                                         <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
                                             <div class="me-auto">
-                                            <h3 class="{# {% if app.user < lesson.numbering %} #}text-warning text-decoration-underline{# {% else %}text-success text-decoration-underline{% endif %} #}">Leçon n°{{ lesson.numbering }}. - {{ lesson.name }}</h3>
-                                            {{ lesson.resume }}
+                                                <h3 class="{# {% if app.user < lesson.numbering %} #}text-warning text-decoration-underline{# {% else %}text-success text-decoration-underline{% endif %} #}">Leçon n°{{ lesson.numbering }}. - {{ lesson.name }}</h3>
+                                                {{ lesson.resume }}
                                             </div>
                                             <a class="btn {# {% if app.user < lesson.numbering - 1 %} #}btn-outline-info {# disabled{% else %}btn-info text-white{% endif %} #}" data-bs-toggle="modal" data-bs-target="#modalLesson{{ lesson.id }}">Commencer</a>
-                                                <div class="modal fade" id="modalLesson{{ lesson.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                            <div class="modal fade" id="modalLesson{{ lesson.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-xl modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h1 class="modal-title text-info fs-2" id="exampleModalLabel">Leçon n°{{ lesson.numbering }} : {{ lesson.name }}</h1>
@@ -42,8 +44,9 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             {% for block in blocks|sort((a, b) => a.numbering <=> b.numbering) %}
-                                                                {% if block.lesson == lesson.name %}
-                                                                    <p class="fs-5">{{ block.content }}</p>
+                                                                {% set lessonName = chapterName ~ ' : ' ~ lesson.name %}
+                                                                {% if block.lesson == lessonName %}
+                                                                    <p class="fs-5">{{ block.content|raw }}</p>
                                                                 {% endif %}
                                                             {% endfor %}
                                                         </div>
