@@ -1,4 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'offsite_base.html.twig' %}
+
+{% set page_title = 'Inscription' %}
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('security_pages_register') }}
@@ -9,10 +11,10 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="text-primary text-center mb-3">Créer ton compte</h1>
+    <h1 class="text-primary text-center my-4">Créer ton compte</h1>
 
     {{ form_start(form) }}
-    <div class="card mx-auto w-50">
+    <div class="card bg-light mx-auto w-50 mt-3 mb-5">
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-md-6">

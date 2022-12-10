@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% set page_title = 'Matières' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('front_pages_matter') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('front_pages_matter') }}
+{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('warning') %}
+        <div class="alert alert-warning">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <h1>Liste des matières</h1>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-5">
+        {% for category in categories %}
+            <div class="accordion mb-3" id="accordionDescription{{ category.id }}">
+                <div class="accordion-item">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#id{{ category.id }}" aria-expanded="true" aria-controls="id{{ category.id }}">
+                        <h2 class="accordion-header">
+                            {{ category.name }}
+                        </h2>
+                    </button>
+                    {% for matter in matters|sort((a, b) => a.name <=> b.name) %}
+                        {% if matter.category == category.name %}
+                        <div id="id{{ category.id }}" class="accordion-collapse collapse show" data-bs-parent="#accordionDescription{{ category.id }}">
+                            <hr class="m-0">
+                            <a class="list-group-item py-2 px-4 fs-4" href="{{ path('app_lessons', {'matter' : matter.slug}) }}">
+                                {{ matter.name }}
+                            </a>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OnlineLessonRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -18,10 +20,10 @@ class OnlineLesson
     private ?string $author = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $startAt = null;
+    private ?\DateTime $startAt = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $endAt = null;
+    private ?\DateTime $endAt = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $nb_participants = null;
@@ -34,6 +36,18 @@ class OnlineLesson
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $class_link = null;
+
+    #[ORM\ManyToMany(targetEntity: Language::class, inversedBy: 'onlineLessons')]
+    private Collection $language;
+
+    #[ORM\ManyToOne(inversedBy: 'onlinelessons')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Matter $matter = null;
+
+    public function __construct()
+    {
+        $this->language = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -52,24 +66,24 @@ class OnlineLesson
         return $this;
     }
 
-    public function getStartAt(): ?\DateTimeImmutable
+    public function getStartAt(): ?\DateTime
     {
         return $this->startAt;
     }
 
-    public function setStartAt(\DateTimeImmutable $startAt): self
+    public function setStartAt(\DateTime $startAt): self
     {
         $this->startAt = $startAt;
 
         return $this;
     }
 
-    public function getEndAt(): ?\DateTimeImmutable
+    public function getEndAt(): ?\DateTime
     {
         return $this->endAt;
     }
 
-    public function setEndAt(\DateTimeImmutable $endAt): self
+    public function setEndAt(\DateTime $endAt): self
     {
         $this->endAt = $endAt;
 
@@ -120,6 +134,42 @@ class OnlineLesson
     public function setClassLink(string $class_link): self
     {
         $this->class_link = $class_link;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Language>
+     */
+    public function getLanguage(): Collection
+    {
+        return $this->language;
+    }
+
+    public function addLanguage(Language $language): self
+    {
+        if (!$this->language->contains($language)) {
+            $this->language->add($language);
+        }
+
+        return $this;
+    }
+
+    public function removeLanguage(Language $language): self
+    {
+        $this->language->removeElement($language);
+
+        return $this;
+    }
+
+    public function getMatter(): ?Matter
+    {
+        return $this->matter;
+    }
+
+    public function setMatter(?Matter $matter): self
+    {
+        $this->matter = $matter;
 
         return $this;
     }

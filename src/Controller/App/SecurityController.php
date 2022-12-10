@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\App;
 
 use App\Entity\User;
 use App\Form\RegisterType;
@@ -65,7 +65,5 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/logout', name: 'app_logout')]
-    public function logout(): void
-    {
-    }
+    public function logout(): void {}
 }
