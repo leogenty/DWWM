@@ -25,9 +25,16 @@ class Matter
     #[ORM\OneToMany(mappedBy: 'matter', targetEntity: Type::class)]
     private Collection $types;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
+    #[ORM\OneToMany(mappedBy: 'matter', targetEntity: OnlineLesson::class)]
+    private Collection $onlineLessons;
+
     public function __construct()
     {
         $this->types = new ArrayCollection();
+        $this->onlineLessons = new ArrayCollection();
     }
 
     // add this function manually to render string in Admin Dashboard
@@ -119,6 +126,48 @@ class Matter
             // set the owning side to null (unless already changed)
             if ($type->getMatter() === $this) {
                 $type->setMatter(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, OnlineLesson>
+     */
+    public function getOnlineLessons(): Collection
+    {
+        return $this->onlineLessons;
+    }
+
+    public function addOnlineLesson(OnlineLesson $onlineLesson): self
+    {
+        if (!$this->onlineLessons->contains($onlineLesson)) {
+            $this->onlineLessons->add($onlineLesson);
+            $onlineLesson->setMatter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOnlineLesson(OnlineLesson $onlineLesson): self
+    {
+        if ($this->onlineLessons->removeElement($onlineLesson)) {
+            // set the owning side to null (unless already changed)
+            if ($onlineLesson->getMatter() === $this) {
+                $onlineLesson->setMatter(null);
             }
         }
 

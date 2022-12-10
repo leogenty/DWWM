@@ -17,7 +17,7 @@
         </div>
     {% endfor %}
 
-    <h2>Liste des matières :</h2>
+    <h1>Liste des matières</h1>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-5">
         {% for category in categories %}
@@ -32,7 +32,7 @@
                         {% if matter.category == category.name %}
                         <div id="id{{ category.id }}" class="accordion-collapse collapse show" data-bs-parent="#accordionDescription{{ category.id }}">
                             <hr class="m-0">
-                            <a class="list-group-item py-2 px-4 fs-4" href="{{ path('app_lessons', {'matter' : matter.name}) }}">
+                            <a class="list-group-item py-2 px-4 fs-4" href="{{ path('app_lessons', {'matter' : matter.slug}) }}">
                                 {{ matter.name }}
                             </a>
                         </div>

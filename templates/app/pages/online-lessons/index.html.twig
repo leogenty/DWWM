@@ -11,25 +11,25 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="text-warning">Liste des cours en ligne disponible</h1>
+    <h1>Liste des cours en ligne</h1>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {% for onlineLesson in onlineLessons %}
         <div class="col">
             <div class="card text-bg-light mb-3">
                 <div class="card-header">
-                    <h4 class="card-title text-success text-decoration-underline me-auto">Cours : {{ onlineLesson.title }}</h4>
+                    <h4 class="card-title text-success text-decoration-underline me-auto">{{ onlineLesson.matter}} : {{ onlineLesson.title }}</h4>
                     {% for language in onlineLesson.getLanguage() %}
-                            <h5><span class="badge text-bg-info text-white h-100 fa-pull-right">{{ language.name }}</span></h5>
+                            <h5><span class="badge text-bg-info text-white h-100">{{ language.name }}</span></h5>
                     {% endfor %}
                 </div>
                 <div class="card-body">
                     <p class="card-text">
                         {{ onlineLesson.author }}<br>
-                        Début : {{ onlineLesson.startAt | date("F jS \\a\\t g:ia") }}<br>
-                        Fin : {{ onlineLesson.endAt | date("F jS \\a\\t g:ia") }}<br>
-                        <a class="btn btn-outline-warning" href="{{ onlineLesson.classLink }}">Lien vers la salle de cours</a><br>
+                        Début : {{ onlineLesson.startAt | date("l d F - H:i") }}<br>
+                        Fin : {{ onlineLesson.endAt | date("l d F - H:i") }}<br>
                         Nombre de participants : {{ onlineLesson.nbParticipants }}<br>
+                        <a class="btn btn-outline-warning" href="{{ onlineLesson.classLink }}">Lien vers la salle de cours</a>
                     </p>
                     <div class="accordion mb-3" id="accordionDescription">
                         <div class="accordion-item">
@@ -40,12 +40,12 @@
                             </h2>
                             <div id="id{{ onlineLesson.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionDescription">
                                 <div class="accordion-body">
-                                    {{ onlineLesson.description }}
+                                    {{ onlineLesson.description|raw }}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <a class="btn btn-info text-white fa-pull-right" href="">Participer</a>
+                    <div class="text-center"><a class="btn btn-lg btn-info text-white" href="">Participer</a></div>
                 </div>
             </div>
         </div>

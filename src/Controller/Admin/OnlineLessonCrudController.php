@@ -22,12 +22,13 @@ class OnlineLessonCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
+            AssociationField::new('matter'),
             TextField::new('author'),
             TextField::new('title'),
             AssociationField::new('language'),
             TextEditorField::new('description'),
-            DateTimeField::new('start_at')->renderAsChoice()->setFormat('dd MMMM yyyy hh:mm'),
-            DateTimeField::new('end_at')->renderAsChoice()->setFormat('dd MMMM yyyy hh:mm'),
+            DateTimeField::new('start_at')->renderAsChoice(),
+            DateTimeField::new('end_at')->renderAsChoice()->setFormat('dd MMMM yyyy hh:mm:ss'),
             IntegerField::new('nb_participants'),
             TextField::new('class_link'),
         ];

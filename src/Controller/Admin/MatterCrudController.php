@@ -6,6 +6,7 @@ use App\Entity\Matter;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class MatterCrudController extends AbstractCrudController
@@ -20,6 +21,7 @@ class MatterCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('name'),
+            SlugField::new('slug')->setTargetFieldName('name'),
             AssociationField::new('category'),
         ];
     }

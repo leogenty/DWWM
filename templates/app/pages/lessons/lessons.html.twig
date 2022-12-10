@@ -51,8 +51,10 @@
                                                             {% endfor %}
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
-                                                            <a type="button" class="btn btn-success text-white" href="{{ path('app_lessons', {'matter' : type.matter}) }}">Terminer</a>
+                                                            {# {{ form_start(form) }} #}
+                                                                <button type="button" class="btn btn-light me-auto" data-bs-dismiss="modal">Fermer</button>
+                                                                <button type="submit" class="btn btn-success text-white" data-bs-dismiss="modal" {# href="{{ path('app_lessons', {'matter' : type.matter}) }} "#}>Terminer</button>
+                                                            {# {{ form_end(form) }} #}
                                                         </div>
                                                     </div>
                                                 </div>

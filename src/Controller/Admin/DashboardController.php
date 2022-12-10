@@ -29,7 +29,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Jpl Symfony')
+            ->setTitle('Baruu Symfony')
             ->setLocales(['fr']);
     }
 
