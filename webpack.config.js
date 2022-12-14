@@ -21,6 +21,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app_pages_lessons', './assets/javascripts/app/pages/lessons/index.js')
+    .addEntry('app_pages_lessons_single', './assets/javascripts/app/pages/lessons/single.js')
     .addEntry('app_pages_online_lessons', './assets/javascripts/app/pages/online-lessons/index.js')
     .addEntry('app_pages_profile', './assets/javascripts/app/pages/profile/index.js')
 

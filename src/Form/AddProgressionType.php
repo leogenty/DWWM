@@ -22,7 +22,9 @@ class AddProgressionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('complete', IntegerType::class)
             ->add('type', EntityType::class, [
+                'row_attr' => ['class' => 'd-none'],
                 'class' => Type::class,
                 'query_builder' => function (EntityRepository $er) use ($options) {
                     return $er->createQueryBuilder('type')
@@ -34,6 +36,7 @@ class AddProgressionType extends AbstractType
                 },
             ])
             ->add('user', EntityType::class, [
+                'row_attr' => ['class' => 'd-none'],
                 'class' => User::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('user')
@@ -44,7 +47,6 @@ class AddProgressionType extends AbstractType
                     return $c->getId();
                 },
             ])
-            ->add('complete', IntegerType::class)
         ;
     }
 

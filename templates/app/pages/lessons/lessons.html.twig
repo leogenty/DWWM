@@ -34,31 +34,7 @@
                                                 <h3 class="{# {% if app.user < lesson.numbering %} #}text-warning text-decoration-underline{# {% else %}text-success text-decoration-underline{% endif %} #}">Leçon n°{{ lesson.numbering }}. - {{ lesson.name }}</h3>
                                                 {{ lesson.resume }}
                                             </div>
-                                            <a class="btn {# {% if app.user < lesson.numbering - 1 %} #}btn-outline-info {# disabled{% else %}btn-info text-white{% endif %} #}" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalLesson{{ lesson.id }}">Commencer</a>
-                                            <div class="modal fade" id="modalLesson{{ lesson.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-xl modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h1 class="modal-title text-info fs-2" id="exampleModalLabel">Leçon n°{{ lesson.numbering }} : {{ lesson.name }}</h1>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            {% for block in blocks|sort((a, b) => a.numbering <=> b.numbering) %}
-                                                                {% set lessonName = chapterName ~ ' : ' ~ lesson.name %}
-                                                                {% if block.lesson == lessonName %}
-                                                                    <p class="fs-5">{{ block.content|raw }}</p>
-                                                                {% endif %}
-                                                            {% endfor %}
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            {{ form_start(form) }}
-                                                                <button type="button" class="btn btn-light me-auto" data-bs-dismiss="modal">Fermer</button>
-                                                                <button type="submit" class="btn btn-success text-white">Terminer</button>
-                                                            {{ form_end(form) }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <a href="{{ path('app_single', {lessonId: lesson.id, typeId: type.id}) }}" class="btn {# {% if app.user < lesson.numbering - 1 %} #}btn-outline-info {# disabled{% else %}btn-info text-white{% endif %} #}">Commencer</a>
                                         </li>
                                     {% endif %}
                                 {% endfor %}

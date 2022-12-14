@@ -28,8 +28,21 @@ class LessonsController extends AbstractController
             return $this->redirectToRoute('front_matter');
         }
 
-        $progressionId = $request->get('progressionId');
+        return $this->render('app/pages/lessons/index.html.twig', [
+            'types' => $managerRegistry->getRepository(Type::class)->findBy(['matter' => $managerRegistry->getRepository(Matter::class)->findOneBy(['name' => $request->get('matter')])]),
+            'chapters' => $managerRegistry->getRepository(Chapter::class)->findAll(),
+            'lessons' => $managerRegistry->getRepository(Lesson::class)->findAll(),
+            'blocks' => $managerRegistry->getRepository(Block::class)->findAll(),
+        ]);
+
+    }
+
+    #[Route('app/lessons/single/{lessonId}/{typeId}', name: 'app_single')]
+    public function single(Request $request, ManagerRegistry $managerRegistry): Response
+    {
+        $lessonId = $request->get('lessonId');
         $typeId = $request->get('typeId');
+        $progressionId = $request->get('progressionId');
 
         if (null === $progressionId) {
             $progression = new Progression();
@@ -42,19 +55,18 @@ class LessonsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if (null === $progressionId) {
+                $progression->setComplete('10');
                 $managerRegistry->getManager()->persist($progression);
             }
+            $progression->setComplete($progression->getComplete() + 10);
             $managerRegistry->getManager()->flush();
 
             $this->redirectToRoute('front_matter');
         }
 
-        return $this->render('app/pages/lessons/index.html.twig', [
+        return $this->render('app/pages/lessons/single.html.twig', [
             'form' => $form->createView(),
-            'types' => $managerRegistry->getRepository(Type::class)->findBy(['matter' => $managerRegistry->getRepository(Matter::class)->findOneBy(['name' => $request->get('matter')])]),
-            'chapters' => $managerRegistry->getRepository(Chapter::class)->findAll(),
-            'lessons' => $managerRegistry->getRepository(Lesson::class)->findAll(),
-            'blocks' => $managerRegistry->getRepository(Block::class)->findAll(),
+            'lesson' => $managerRegistry->getRepository(Lesson::class)->find($lessonId),
         ]);
 
     }
