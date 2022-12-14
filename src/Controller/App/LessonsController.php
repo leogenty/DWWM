@@ -26,33 +26,36 @@ class LessonsController extends AbstractController
             $this->addFlash('warning', 'Sélectionnez une matière pour accéder aux leçons associées.');
 
             return $this->redirectToRoute('front_matter');
-        } else {
-            /* $progression = new Progression();
-
-            $form = $this->createForm(AddProgressionType::class, $progression);
-            $form->handleRequest($request);
-
-            if ($form->isSubmitted() && $form->isValid()) {
-                $user = $this->getUser()->getId();
-                $type = $request->attributes->get($aaa);
-                var_dump($user);
-                var_dump($type);
-                var_dump($aaa);
-                $progression->setUser($user);
-                $progression->setType($type);
-                $managerRegistry->getManager()->persist($progression);
-                $managerRegistry->getManager()->flush();
-
-                $this->redirectToRoute('front_matter');
-            } */
-
-            return $this->render('app/pages/lessons/index.html.twig', [
-                // 'form' => $form->createView(),
-                'types' => $managerRegistry->getRepository(Type::class)->findBy(['matter' => $managerRegistry->getRepository(Matter::class)->findOneBy(['name' => $request->get('matter')])]),
-                'chapters' => $managerRegistry->getRepository(Chapter::class)->findAll(),
-                'lessons' => $managerRegistry->getRepository(Lesson::class)->findAll(),
-                'blocks' => $managerRegistry->getRepository(Block::class)->findAll(),
-            ]);
         }
+
+        $progressionId = $request->get('progressionId');
+        $typeId = $request->get('typeId');
+
+        if (null === $progressionId) {
+            $progression = new Progression();
+        } else {
+            $progression = $managerRegistry->getRepository(Progression::class)->find($progressionId);
+        }
+
+        $form = $this->createForm(AddProgressionType::class, $progression, ['typeId' => $typeId]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (null === $progressionId) {
+                $managerRegistry->getManager()->persist($progression);
+            }
+            $managerRegistry->getManager()->flush();
+
+            $this->redirectToRoute('front_matter');
+        }
+
+        return $this->render('app/pages/lessons/index.html.twig', [
+            'form' => $form->createView(),
+            'types' => $managerRegistry->getRepository(Type::class)->findBy(['matter' => $managerRegistry->getRepository(Matter::class)->findOneBy(['name' => $request->get('matter')])]),
+            'chapters' => $managerRegistry->getRepository(Chapter::class)->findAll(),
+            'lessons' => $managerRegistry->getRepository(Lesson::class)->findAll(),
+            'blocks' => $managerRegistry->getRepository(Block::class)->findAll(),
+        ]);
+
     }
 }

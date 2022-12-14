@@ -34,7 +34,7 @@
                                                 <h3 class="{# {% if app.user < lesson.numbering %} #}text-warning text-decoration-underline{# {% else %}text-success text-decoration-underline{% endif %} #}">Leçon n°{{ lesson.numbering }}. - {{ lesson.name }}</h3>
                                                 {{ lesson.resume }}
                                             </div>
-                                            <a class="btn {# {% if app.user < lesson.numbering - 1 %} #}btn-outline-info {# disabled{% else %}btn-info text-white{% endif %} #}" data-bs-toggle="modal" data-bs-target="#modalLesson{{ lesson.id }}">Commencer</a>
+                                            <a class="btn {# {% if app.user < lesson.numbering - 1 %} #}btn-outline-info {# disabled{% else %}btn-info text-white{% endif %} #}" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalLesson{{ lesson.id }}">Commencer</a>
                                             <div class="modal fade" id="modalLesson{{ lesson.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-xl modal-dialog-centered">
                                                     <div class="modal-content">
@@ -51,10 +51,10 @@
                                                             {% endfor %}
                                                         </div>
                                                         <div class="modal-footer">
-                                                            {# {{ form_start(form) }} #}
+                                                            {{ form_start(form) }}
                                                                 <button type="button" class="btn btn-light me-auto" data-bs-dismiss="modal">Fermer</button>
-                                                                <button type="submit" class="btn btn-success text-white" data-bs-dismiss="modal" {# href="{{ path('app_lessons', {'matter' : type.matter}) }} "#}>Terminer</button>
-                                                            {# {{ form_end(form) }} #}
+                                                                <button type="submit" class="btn btn-success text-white">Terminer</button>
+                                                            {{ form_end(form) }}
                                                         </div>
                                                     </div>
                                                 </div>
