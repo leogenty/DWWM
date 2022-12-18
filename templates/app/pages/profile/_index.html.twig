@@ -1,20 +1,18 @@
 <form>
-    <fieldset disabled>
-        <div class="col-8">
-            <label for="disabledTextInput" class="form-label">Prénom : </label>
-            <input type="text" id="disabledTextInput" class="form-control mb-3" placeholder="{{ app.user.firstname }}">
-        </div>
-        <div class="col-8">
-            <label for="disabledTextInput" class="form-label">Nom : </label>
-            <input type="text" id="disabledTextInput" class="form-control mb-3" placeholder="{{ app.user.lastname }}">
-        </div>
-        <div class="col-8">
-            <label for="disabledTextInput" class="form-label">Nom d'utilisateur : </label>
-            <input type="text" id="disabledTextInput" class="form-control mb-3" placeholder="{{ app.user.name }}">
-        </div>
-        <div class="col-8">
-            <label for="disabledTextInput" class="form-label">Email : </label>
-            <input type="text" id="disabledTextInput" class="form-control mb-3" placeholder="{{ app.user.email }}">
-        </div>
-    </fieldset>
+    <div class="col-8">
+        <label class="form-label">Prénom : </label>
+        <input type="text" class="form-control mb-3" placeholder="{{ app.user.firstname }}" readonly>
+    </div>
+    <div class="col-8">
+        <label for="disabledTextInput" class="form-label">Nom : </label>
+        <input type="text" id="disabledTextInput" class="form-control mb-3" placeholder="{{ app.user.lastname }}" readonly>
+    </div>
+    <div class="col-8">
+        <label for="disabledTextInput" class="form-label">Nom d'utilisateur : </label>
+        <input type="text" id="disabledTextInput" class="form-control mb-3" placeholder="{{ app.user.name }}" readonly>
+    </div>
+    <div class="col-8">
+        <label for="disabledTextInput" class="form-label">Email : </label>
+        <input type="text" id="disabledTextInput" class="form-control mb-3" placeholder="{{ app.user.email }}" readonly>
+    </div>
 </form>
