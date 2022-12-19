@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% set page_title = 'Contact' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('front_pages_contact') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('front_pages_contact') }}
+{% endblock %}
+
+{% block body %}
+
+    <h1>TODO passer par le formulaire pour </h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.fullName) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.message) }}
+        <button class="btn btn-lg btn-primary" type="submit">Envoyer</button>
+    {{ form_end(form) }}
+
+{% endblock %}

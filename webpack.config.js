@@ -27,6 +27,7 @@ Encore
 
     .addEntry('front_pages_home', './assets/javascripts/front/pages/home/index.js')
     .addEntry('front_pages_matter', './assets/javascripts/front/pages/matter/index.js')
+    .addEntry('front_pages_contact', './assets/javascripts/front/pages/contact/index.js')
 
     .addEntry('security_pages_login', './assets/javascripts/security/pages/login/index.js')
     .addEntry('security_pages_register', './assets/javascripts/security/pages/register/index.js')
