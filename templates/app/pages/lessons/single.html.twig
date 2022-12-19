@@ -12,19 +12,20 @@
 
 {% block body %}
     {{ form_start(form) }}
+        <h2>{{ lesson.chapter.name }}</h2>
         <h1 class="text-success text-center mb-5">Leçon n°{{ lesson.numbering }} : {{ lesson.name }}</h1>
 
         {% for block in lesson.blocks %}
             <p class="fs-5">{{ block.content|raw }}</p>
         {% endfor %}
-        <div class="d-none">{{ form_row(form.complete, {value: '10'}) }}</div>
+        <div class="">{{ form_row(form.complete) }}</div>
 
         <div class="card">
             <div class="card-body d-flex justify-content-center justify-content-md-between align-items-center">
-                <div class="progress flex-grow-1">
-                    <div class="progress-bar progress-bar-striped" role="progressbar" aria-label="Avancement" style="width: {% if form.vars.value is not null and form.vars.value.complete is not null %}{{ form.vars.value.complete }}{% endif %}%" aria-valuenow="{% if form.vars.value is not null and form.vars.value.complete is not null %}{{ form.vars.value.complete }}{% endif %}" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress flex-grow-1 me-3">
+                    <div class="progress-bar progress-bar-striped" role="progressbar" aria-label="Avancement" style="width: {{ progression.complete }}%" aria-valuenow="{{ progression.complete }}" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <button type="submit" class="btn btn-success text-white">Terminer</button>
+                <button type="submit" href="{{ path('app_lessons', {'matter' : lesson.chapter.type.matter.slug}) }}" class="btn btn-success text-white">Terminer</button>
             </div>
         </div>
     {{ form_end(form) }}

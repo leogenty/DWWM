@@ -34,10 +34,9 @@ class LessonsController extends AbstractController
             'lessons' => $managerRegistry->getRepository(Lesson::class)->findAll(),
             'blocks' => $managerRegistry->getRepository(Block::class)->findAll(),
         ]);
-
     }
 
-    #[Route('app/lessons/single/{lessonId}/{typeId}', name: 'app_single')]
+    #[Route('app/lessons/{matter}/{typeNb}/{chapterNb}/{lessonNb}', name: 'app_lesson_single')]
     public function single(Request $request, ManagerRegistry $managerRegistry): Response
     {
         $lessonId = $request->get('lessonId');
@@ -46,6 +45,15 @@ class LessonsController extends AbstractController
 
         if (null === $progressionId) {
             $progression = new Progression();
+            $form = $this->createForm(AddProgressionType::class, $progression, ['typeId' => $typeId]);
+            $form->handleRequest($request);
+
+            $progression->setUser($this->getUser());
+            $progression->setType($managerRegistry->getRepository(Type::class)->findOneBy(['id' => $typeId]));
+            $progression->setComplete(0);
+
+            $managerRegistry->getManager()->persist($progression);
+            $managerRegistry->getManager()->flush();
         } else {
             $progression = $managerRegistry->getRepository(Progression::class)->find($progressionId);
         }
@@ -54,20 +62,15 @@ class LessonsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if (null === $progressionId) {
-                $progression->setComplete('10');
-                $managerRegistry->getManager()->persist($progression);
-            }
             $progression->setComplete($progression->getComplete() + 10);
             $managerRegistry->getManager()->flush();
-
-            $this->redirectToRoute('front_matter');
+            return $this->redirectToRoute('app_lessons', ['matter' => $request->get('matter')]);
         }
 
         return $this->render('app/pages/lessons/single.html.twig', [
             'form' => $form->createView(),
             'lesson' => $managerRegistry->getRepository(Lesson::class)->find($lessonId),
+            'progression' => $managerRegistry->getRepository(Progression::class)->find($progressionId),
         ]);
-
     }
 }

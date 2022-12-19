@@ -13,6 +13,8 @@ class OnlineLessonController extends AbstractController
     #[Route('/app/online_lesson', name: 'app_online_lesson')]
     public function index(OnlineLessonRepository $onlineLessonRepository, LanguageRepository $languageRepository): Response
     {
+        // TODO create form - nb_participants += 1;
+
         return $this->render('app/pages/online-lessons/index.html.twig', [
             'onlineLessons' => $onlineLessonRepository->findAll(),
             'languages' => $languageRepository->findAll(),
