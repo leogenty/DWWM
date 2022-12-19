@@ -54,6 +54,7 @@ class LessonsController extends AbstractController
 
             $managerRegistry->getManager()->persist($progression);
             $managerRegistry->getManager()->flush();
+            return $this->redirectToRoute('app_lesson_single', ['matter' => $request->get('matter'), 'typeNb' => $request->get('typeNb'), 'chapterNb' => $request->get('chapterNb'), 'lessonNb' => $request->get('lessonNb')]); // refresh page
         } else {
             $progression = $managerRegistry->getRepository(Progression::class)->find($progressionId);
         }

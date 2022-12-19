@@ -11,13 +11,13 @@
 {% endblock %}
 
 {% block body %}
+    <h1 class="text-success text-center mb-4">Liste des matières</h1>
+
     {% for message in app.flashes('warning') %}
         <div class="alert alert-warning">
             {{ message }}
         </div>
     {% endfor %}
-
-    <h1 class="text-success text-center mb-5">Liste des matières</h1>
 
     <h4 class="my-3">Choisissez une matière que ....</h4>
 
