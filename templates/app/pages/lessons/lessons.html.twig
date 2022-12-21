@@ -34,13 +34,13 @@
                                                 <h3 class="{# {% if app.user < lesson.numbering %} #}text-warning text-decoration-underline{# {% else %}text-success text-decoration-underline{% endif %} #}">Leçon n°{{ lesson.numbering }}. - {{ lesson.name }}</h3>
                                                 {{ lesson.resume }}
                                             </div>
-                                            {% set hasProgression = null %}
+                                            {% set progressionId = null %}
                                             {% for prog in app.user.progressions %}
                                                 {% if prog.type.id == lesson.chapter.type.id %}
-                                                    {% set hasProgression = prog.id %}
+                                                    {% set progressionId = prog.id %}
                                                 {% endif %}
                                             {% endfor %}
-                                            <a href="{{ path('app_lesson_single', {matter: type.matter.slug, lessonId: lesson.id, typeId: type.id, typeNb: type.numbering, lessonNb: lesson.numbering, chapterNb: chapter.numbering, progressionId: hasProgression}) }}" class="btn {# {% if app.user < lesson.numbering - 1 %} #}btn-outline-info {# disabled{% else %}btn-info text-white{% endif %} #}">Commencer</a>
+                                            <a href="{{ path('app_lesson_single', {matter: type.matter.slug, typeNb: type.numbering, chapterNb: chapter.numbering, lessonNb: lesson.numbering, lessonId: lesson.id, typeId: type.id, progressionId: progressionId}) }}" class="btn {# {% if app.user < lesson.numbering - 1 %} #}btn-outline-info {# disabled{% else %}btn-info text-white{% endif %} #}">Commencer</a>
                                         </li>
                                     {% endif %}
                                 {% endfor %}

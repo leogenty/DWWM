@@ -2,8 +2,11 @@
 
 namespace App\Controller\Front;
 
-use App\Repository\CategoryRepository;
-use App\Repository\MatterRepository;
+use App\Entity\Category;
+use App\Entity\Lesson;
+use App\Entity\Matter;
+use App\Entity\Type;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,11 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class MatterController extends AbstractController
 {
     #[Route('/matter', name: 'front_matter')]
-    public function index(MatterRepository $matterRepository, CategoryRepository $categoryRepository): Response
+    public function index(ManagerRegistry $managerRegistry): Response
     {
         return $this->render('front/pages/matter/index.html.twig', [
-            'matters' => $matterRepository->findAll(),
-            'categories' => $categoryRepository->findAll(),
+            'categories' => $managerRegistry->getRepository(Category::class)->findAll(),
+            'matters' => $managerRegistry->getRepository(Matter::class)->findAll(),
+            'types' => $managerRegistry->getRepository(Type::class)->findAll(),
         ]);
     }
 }

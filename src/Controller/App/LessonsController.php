@@ -28,6 +28,25 @@ class LessonsController extends AbstractController
             return $this->redirectToRoute('front_matter');
         }
 
+        $types = $managerRegistry->getRepository(Type::class)->findBy(['matter' => $managerRegistry->getRepository(Matter::class)->findOneBy(['name' => $request->get('matter')])]);
+        foreach ($types as $type) {
+            $progressionId = $request->get('progressionId');
+            var_dump($progressionId);
+
+            if (null === $progressionId) {
+                $progression = new Progression();
+                $form = $this->createForm(AddProgressionType::class, $progression, ['typeId' => $type]);
+                $form->handleRequest($request);
+
+                $progression->setUser($this->getUser());
+                $progression->setType($managerRegistry->getRepository(Type::class)->findOneBy(['id' => $type]));
+                $progression->setComplete(0);
+
+                $managerRegistry->getManager()->persist($progression);
+                $managerRegistry->getManager()->flush();
+            }
+        }
+
         return $this->render('app/pages/lessons/index.html.twig', [
             'types' => $managerRegistry->getRepository(Type::class)->findBy(['matter' => $managerRegistry->getRepository(Matter::class)->findOneBy(['name' => $request->get('matter')])]),
             'chapters' => $managerRegistry->getRepository(Chapter::class)->findAll(),
@@ -42,22 +61,9 @@ class LessonsController extends AbstractController
         $lessonId = $request->get('lessonId');
         $typeId = $request->get('typeId');
         $progressionId = $request->get('progressionId');
+        var_dump($progressionId);
 
-        if (null === $progressionId) {
-            $progression = new Progression();
-            $form = $this->createForm(AddProgressionType::class, $progression, ['typeId' => $typeId]);
-            $form->handleRequest($request);
-
-            $progression->setUser($this->getUser());
-            $progression->setType($managerRegistry->getRepository(Type::class)->findOneBy(['id' => $typeId]));
-            $progression->setComplete(0);
-
-            $managerRegistry->getManager()->persist($progression);
-            $managerRegistry->getManager()->flush();
-            return $this->redirectToRoute('app_lesson_single', ['matter' => $request->get('matter'), 'typeNb' => $request->get('typeNb'), 'chapterNb' => $request->get('chapterNb'), 'lessonNb' => $request->get('lessonNb')]); // refresh page
-        } else {
-            $progression = $managerRegistry->getRepository(Progression::class)->find($progressionId);
-        }
+        $progression = $managerRegistry->getRepository(Progression::class)->find($progressionId);
 
         $form = $this->createForm(AddProgressionType::class, $progression, ['typeId' => $typeId]);
         $form->handleRequest($request);
@@ -65,6 +71,7 @@ class LessonsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $progression->setComplete($progression->getComplete() + 10);
             $managerRegistry->getManager()->flush();
+
             return $this->redirectToRoute('app_lessons', ['matter' => $request->get('matter')]);
         }
 

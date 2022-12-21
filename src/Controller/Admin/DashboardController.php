@@ -36,15 +36,15 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         // yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('User', 'fas fa-list', User::class);
-        yield MenuItem::linkToCrud('Category', 'fas fa-screen-users', Category::class);
-        yield MenuItem::linkToCrud('Matter', 'fas fa-screen-users', Matter::class);
-        yield MenuItem::linkToCrud('Type', 'fas fa-screen-users', Type::class);
-        yield MenuItem::linkToCrud('Chapter', 'fas fa-screen-users', Chapter::class);
-        yield MenuItem::linkToCrud('Lesson', 'fas fa-screen-users', Lesson::class);
-        yield MenuItem::linkToCrud('Block', 'fas fa-screen-users', Block::class);
-        yield MenuItem::linkToCrud('Online Lesson', 'fas fa-screen-users', OnlineLesson::class);
-        yield MenuItem::linkToCrud('Progression', 'fas fa-screen-users', Progression::class);
-        yield MenuItem::linkToCrud('Language', 'fas fa-screen-users', Language::class);
+        yield MenuItem::linkToCrud('User', 'fas fa-user', User::class);
+        yield MenuItem::linkToCrud('Progression', 'fas fa-bars', Progression::class);
+        yield MenuItem::linkToCrud('Category', 'fas fa-list', Category::class);
+        yield MenuItem::linkToCrud('Matter', 'fas fa-brain', Matter::class);
+        yield MenuItem::linkToCrud('Type', 'fas fa-laptop-file', Type::class);
+        yield MenuItem::linkToCrud('Chapter', 'fas fa-folder-tree', Chapter::class);
+        yield MenuItem::linkToCrud('Lesson', 'fas fa-book-open', Lesson::class);
+        yield MenuItem::linkToCrud('Block', 'fas fa-file-lines', Block::class);
+        yield MenuItem::linkToCrud('Online Lesson', 'fas fa-person-chalkboard', OnlineLesson::class);
+        yield MenuItem::linkToCrud('Language', 'fas fa-earth', Language::class);
     }
 }

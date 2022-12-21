@@ -21,7 +21,7 @@ class ProgressionCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             IntegerField::new('complete'),
             AssociationField::new('user'),
-            AssociationField::new('chapter'),
+            AssociationField::new('type'),
         ];
     }
 }
