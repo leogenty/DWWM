@@ -31,7 +31,6 @@ class LessonsController extends AbstractController
         $types = $managerRegistry->getRepository(Type::class)->findBy(['matter' => $managerRegistry->getRepository(Matter::class)->findOneBy(['name' => $request->get('matter')])]);
         foreach ($types as $type) {
             $progressionId = $request->get('progressionId');
-            var_dump($progressionId);
 
             if (null === $progressionId) {
                 $progression = new Progression();
@@ -61,7 +60,6 @@ class LessonsController extends AbstractController
         $lessonId = $request->get('lessonId');
         $typeId = $request->get('typeId');
         $progressionId = $request->get('progressionId');
-        var_dump($progressionId);
 
         $progression = $managerRegistry->getRepository(Progression::class)->find($progressionId);
 
@@ -69,7 +67,7 @@ class LessonsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $progression->setComplete($progression->getComplete() + 10);
+            $progression->setComplete($form->get('complete')->getData());
             $managerRegistry->getManager()->flush();
 
             return $this->redirectToRoute('app_lessons', ['matter' => $request->get('matter')]);
@@ -77,6 +75,8 @@ class LessonsController extends AbstractController
 
         return $this->render('app/pages/lessons/single.html.twig', [
             'form' => $form->createView(),
+            'types' => $managerRegistry->getRepository(Type::class)->findBy(['matter' => $managerRegistry->getRepository(Matter::class)->findOneBy(['name' => $request->get('matter')])]),
+            'lessons' => $managerRegistry->getRepository(Lesson::class)->findAll(),
             'lesson' => $managerRegistry->getRepository(Lesson::class)->find($lessonId),
             'progression' => $managerRegistry->getRepository(Progression::class)->find($progressionId),
         ]);

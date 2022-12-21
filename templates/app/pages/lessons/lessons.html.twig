@@ -3,18 +3,19 @@
         {% set count = count + 1 %}
     {% endfor %}
 
-<div class="card-body align-self-center mb-4">
-    <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
-        {% if count > 0 %}
+{% if count > 0 %}
+    <div class="card-body align-self-center mb-4">
+        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
             {% for type in types|sort((a, b) => a.numbering <=> b.numbering) %}
                 <li class="nav-item">
                     <button class="nav-link {% if type.numbering == 1 %}active{% endif %}" id="{{ type.name }}-tab" data-bs-toggle="tab" data-bs-target="#{{ type.name }}" role="tab" aria-controls="{{ type.name }}" aria-selected="true"><i class="far fa-book-open-cover me-2"></i>{{ type.name }}</button>
                 </li>
             {% endfor %}
-        {% else %}
-        {% endif %}
-    </ul>
-</div>
+        </ul>
+    </div>
+{% else %}
+    <h3 class="text-center my-5">Aucune leçon n'est disponible dans cette matière.</h3>
+{% endif %}
 
 <div class="tab-content" id="myTabContent">
     {% for type in types|sort((a, b) => a.numbering <=> b.numbering) %}
@@ -22,7 +23,7 @@
             {% for chapter in chapters|sort((a, b) => a.numbering <=> b.numbering) %}
                 {% set typeName = type.matter ~ ' : ' ~ type.name %}
                 {% if chapter.type == typeName %}
-                    <h2 class="text-info mb-2 ms-3">Chapitre {{ chapter.numbering }} : {{ chapter.name }}</h2>
+                    <h2 class="text-info mb-2 ms-3">Chapitre {{ chapter.numbering }} : <span class="text-decoration-underline">{{ chapter.name }}</span></h2>
                     <div class="card text-bg-light mb-5">
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
@@ -31,7 +32,7 @@
                                     {% if lesson.chapter == chapterName %}
                                         <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
                                             <div class="me-auto">
-                                                <h3 class="{# {% if app.user < lesson.numbering %} #}text-warning text-decoration-underline{# {% else %}text-success text-decoration-underline{% endif %} #}">Leçon n°{{ lesson.numbering }}. - {{ lesson.name }}</h3>
+                                                <h3 class="{# {% if app.user < lesson.numbering %} #}text-warning {# {% else %}text-success text-decoration-underline{% endif %} #}">Leçon n°{{ lesson.numbering }} - {{ lesson.name }}</h3>
                                                 {{ lesson.resume }}
                                             </div>
                                             {% set progressionId = null %}
