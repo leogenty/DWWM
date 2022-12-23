@@ -11,31 +11,31 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="text-primary text-center my-4">Créer ton compte</h1>
+    <h1 class="text-info text-center mb-3">Créer ton compte</h1>
 
     {{ form_start(form) }}
     <div class="card bg-light mx-auto w-50 mt-3 mb-5">
         <div class="card-body">
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 fs-4">
                     {{ form_row(form.firstname) }}
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 fs-4">
                     {{ form_row(form.lastname) }}
                 </div>
             </div>
             <div class="row>">
-                <div class="col-12 col-md-10">
+                <div class="col-12 col-md-10 fs-4">
                     {{ form_row(form.name) }}
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-8">
+                <div class="col-12 col-md-8 fs-4">
                     {{ form_row(form.email) }}
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-8">
+                <div class="col-12 col-md-8 fs-4">
                     {{ form_row(form.password) }}
                 </div>
             </div>

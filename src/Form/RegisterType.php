@@ -20,6 +20,9 @@ class RegisterType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'Adresse email',
+                'attr' => [
+                    'placeholder' => 'example@mail.com',
+                ],
             ])
             ->add('password', PasswordType::class, [
                 'label' => 'Mot de passe',
@@ -32,12 +35,21 @@ class RegisterType extends AbstractType
             ])
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
+                'attr' => [
+                    'placeholder' => 'Jean',
+                ],
             ])
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
+                'attr' => [
+                    'placeholder' => 'Eude',
+                ],
             ])
             ->add('name', TextType::class, [
-                'label' => 'Nom d\'utilisateur (Visible par les autres utilisateurs)',
+                'label' => 'Nom d\'utilisateur (visible publiquement)',
+                'attr' => [
+                    'placeholder' => 'utilisateur',
+                ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'label' => 'Accepter les conditions',
@@ -46,6 +58,9 @@ class RegisterType extends AbstractType
                     new IsTrue([
                         'message' => 'Veuillez accepter les Conditions Générales d\'Utilisations',
                     ]),
+                ],
+                'attr' => [
+                    'placeholder' => 'aaa',
                 ],
             ])
         ;

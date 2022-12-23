@@ -19,23 +19,31 @@
     {% endfor %}
 
     {% if app.user %}
-        <h2 class="">Bienvenue {{ app.user.name }} !</h2>
+        <p class="fs-3">Bienvenue <span class="text-info">{{ app.user.name }}</span> !</p>
     {% else %}
-        <div class="row mb-3">
+        <div class="row mb-5">
             <div class="col text-center">
-                <h3>TODO <br>Pas de compte</h3>
-                <a class="btn btn-warning btn-lg" href="{{ path('app_login') }}">Connexion</a>
+                <p class="fs-3 text-warning">Tu n'est connecté à aucun compte.</p>
+                <a class="btn btn-info btn-lg text-white" href="{{ path('app_login') }}">Connexion</a>
             </div>
         </div>
     {% endif %}
 
-    TODO
-    Baruu goal
-    matière
-    leçons
-    cours en ligne par des professionnels
+    <div class="fs-5 mb-3">
+        Baruu est un site dédié à l'apprentissage. Ici, le but c'est de vous faire apprendre ce que vous avez envie d'apprendre.
+        Notre plateforme propose ses services à travers différentes matières. On y retrouve essentiellemnt des leçons, mais également des exercices, et bien d'autre.
+    </div>
 
-    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="fs-5 mb-3">
+        Baruu met également à disosition des cours en ligne. En plus c'est fait par des professionnels qui sont certifiés par la plateforme.
+    </div>
+
+    <div class="fs-5 mb-3">
+        Si tu veux voir ce qu'on propose, c'est par ici !
+        <a class="btn btn-warning btn-lg text-white" href="{{ path('front_matter') }}">Apprendre</a>
+    </div>
+
+    <div id="carouselExampleDark" class="carousel carousel-dark slide my-2" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -74,5 +82,8 @@
         </button>
     </div>
 
-
+    <p class="fs-5 mb-3">
+         les cours en ligne auquel tu peux participer à tout moment
+        <a class="btn btn-warning btn-lg text-white" href="{{ path('app_online_lesson') }}">Cours en ligne</a>
+    </p>
 {% endblock %}

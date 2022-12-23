@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="text-info text-center my-2">Veuillez vous connecter</h1>
+    <h1 class="text-info text-center mb-3">Veuillez vous connecter</h1>
 
     <form method="post">
         {% if error %}
@@ -20,21 +20,21 @@
 
         <div class="card w-50 mx-auto mt-3 mb-5">
             <div class="card-header">
-                <h1 class="h3 font-weight-normal">Entrez vos identifiants</h1>
+                <p class="fs-2 mb-0">Entre tes identifiants</p>
             </div>
             <div class="card-body p-4">
-                <label for="username">Email</label>
-                <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control mb-3" autocomplete="email" required autofocus>
-                <label for="password">Password</label>
+                <label for="username" class="fs-4">Adresse email</label>
+                <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control mb-3" autocomplete="email" placeholder="example@mail.com" required autofocus>
+                <label for="password" class="fs-4">Mot de passe</label>
                 <input type="password" name="_password" id="password" class="form-control mb-4" autocomplete="current-password" required>
 
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-                <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
+                <button class="btn btn-lg btn-primary" type="submit">Se connecter</button>
             </div>
             <div class="card-footer text-center">
-                <p class="mb-2 fs-4">Toujours pas de compte ?</p>
-                <a class="btn btn-outline-warning" href="{{ path('app_register') }}" type="button">
+                <p class="mb-2 fs-4">Tu ne possèdes pas de compte ?</p>
+                <a class="mb-2 btn btn-success text-white" href="{{ path('app_register') }}" type="button">
                     <span class="fa-brands fa-creative-commons-by me-2"></span>Créer ton compte
                 </a>
             </div>
