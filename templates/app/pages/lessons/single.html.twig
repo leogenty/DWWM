@@ -32,11 +32,11 @@
         {{ form_widget(form.complete, {'value': complete}) }}
         <div class="card">
             <div class="card-body d-flex justify-content-center justify-content-md-between align-items-center">
+                <span class="fs-5 me-2">{{ progression.complete }}%</span>
                 <div class="progress flex-grow-1 me-3">
                     <div class="progress-bar progress-bar-striped" role="progressbar" aria-label="Avancement" style="width: {{ progression.complete }}%" aria-valuenow="{{ progression.complete }}" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                {{ progression.id }}
-                <button type="submit" href="{{ path('app_lessons', {matter: lesson.chapter.type.matter.slug, progressionId: progression.id}) }}" class="btn btn-success text-white">Terminer</button>
+                <button type="submit" class="btn btn-success text-white">Terminer</button>
             </div>
         </div>
     {{ form_end(form) }}

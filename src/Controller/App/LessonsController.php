@@ -28,7 +28,7 @@ class LessonsController extends AbstractController
             return $this->redirectToRoute('front_matter');
         }
 
-        $types = $managerRegistry->getRepository(Type::class)->findBy(['matter' => $managerRegistry->getRepository(Matter::class)->findOneBy(['name' => $request->get('matter')])]);
+        $types = $managerRegistry->getRepository(Type::class)->findBy(['matter' => $managerRegistry->getRepository(Matter::class)->findOneBy(['name' => $request->get('matter')])]); // get each type for the current matter
         foreach ($types as $type) {
             $progressionId = $request->get('progressionId');
 
@@ -63,14 +63,25 @@ class LessonsController extends AbstractController
 
         $progression = $managerRegistry->getRepository(Progression::class)->find($progressionId);
 
+        $clonedProgression = clone $progression; // clone of progression object
+
         $form = $this->createForm(AddProgressionType::class, $progression, ['typeId' => $typeId]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $progression->setComplete($form->get('complete')->getData());
+
+            $managerRegistry->getManager()->persist($progression);
             $managerRegistry->getManager()->flush();
 
-            return $this->redirectToRoute('app_lessons', ['matter' => $request->get('matter')]);
+            if ($progression->getComplete() > $clonedProgression->getComplete()) { // if new progression > to the current one
+                $managerRegistry->getManager()->persist($progression);
+                $managerRegistry->getManager()->flush();
+            } else {
+                $progression->setComplete($clonedProgression->getComplete());
+            }
+
+            return $this->redirectToRoute('app_lessons', ['matter' => $request->get('matter'), 'progressionId' => $progressionId]);
         }
 
         return $this->render('app/pages/lessons/single.html.twig', [
