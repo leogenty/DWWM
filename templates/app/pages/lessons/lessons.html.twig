@@ -1,9 +1,9 @@
-{% set count = 0 %}
-    {% for type in types %}
-        {% set count = count + 1 %}
-    {% endfor %}
+{% set countType = 0 %} {# set count var #}
+{% for type in types %}
+    {% set countType = countType + 1 %}
+{% endfor %}
 
-{% if count > 0 %}
+{% if countType > 0 %} {# if there is lesson(s), display tabs, else display 'there is no lesson' #}
     <div class="card-body align-self-center mb-4">
         <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
             {% for type in types|sort((a, b) => a.numbering <=> b.numbering) %}
@@ -20,6 +20,24 @@
 <div class="tab-content" id="myTabContent">
     {% for type in types|sort((a, b) => a.numbering <=> b.numbering) %}
         <div class="tab-pane fade{% if type.numbering == 1 %} active show{% else %}{% endif %}" id="{{ type.name }}" role="tabpanel" aria-labelledby="{{ type.name }}-tab">
+
+            {% set currentLessonNumber = 0 %}
+            {% set countNumberingLesson = 0 %}
+
+            {% for chapter in chapters|sort((a, b) => a.numbering <=> b.numbering) %}
+                {% set typeName = type.matter ~ ' : ' ~ type.name %}
+                {% if chapter.type == typeName %}
+
+                    {% for lesson in lessons|sort((a, b) => a.numbering <=> b.numbering) %}
+                        {% set chapterName = typeName ~ ' : ' ~ chapter.name %}
+                        {% if lesson.chapter == chapterName %}
+                            {% set countNumberingLesson = countNumberingLesson + 1 %}
+                        {% endif %}
+                    {% endfor %}
+
+                {% endif %}
+            {% endfor %}
+
             {% for chapter in chapters|sort((a, b) => a.numbering <=> b.numbering) %}
                 {% set typeName = type.matter ~ ' : ' ~ type.name %}
                 {% if chapter.type == typeName %}
@@ -27,29 +45,51 @@
                     <div class="card text-bg-light mb-5">
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
+
                                 {% for lesson in lessons|sort((a, b) => a.numbering <=> b.numbering) %}
                                     {% set chapterName = typeName ~ ' : ' ~ chapter.name %}
                                     {% if lesson.chapter == chapterName %}
+
+                                        {% if lesson.chapter.type == chapter.type %}
+                                            {% set currentLessonNumber = currentLessonNumber + 1 %}
+                                        {% endif %}
+                                        {% set complete = currentLessonNumber * (100 / countNumberingLesson) %}
+
                                         <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
-                                            <div class="me-auto">
-                                                <h3 class="{# {% if app.user < lesson.numbering %} #}text-warning {# {% else %}text-success text-decoration-underline{% endif %} #}">Leçon n°{{ lesson.numbering }} - {{ lesson.name }}</h3>
-                                                {{ lesson.resume }}
-                                            </div>
                                             {% set progressionId = null %}
                                             {% for prog in app.user.progressions %}
-                                                {% if prog.type.id == lesson.chapter.type.id %}
+                                                {% if prog.type.id == lesson.chapter.type.id %} {# find progression id of user #}
                                                     {% set progressionId = prog.id %}
                                                 {% endif %}
                                             {% endfor %}
-                                            <a href="{{ path('app_lesson_single', {matter: type.matter.slug, typeNb: type.numbering, chapterNb: chapter.numbering, lessonNb: lesson.numbering, lessonId: lesson.id, typeId: type.id, progressionId: progressionId}) }}" class="btn {# {% if app.user < lesson.numbering - 1 %} #}btn-outline-info {# disabled{% else %}btn-info text-white{% endif %} #}">Commencer</a>
+
+                                            {% for prog in app.user.progressions %}
+                                                {% if prog.id == progressionId %}
+
+                                                    <div class="me-auto">
+                                                        <h3 class="{% if prog.complete < complete %}text-warning {% else %}text-success{% endif %}">
+                                                            Leçon n°{{ lesson.numbering }} - <span class="text-decoration-underline">{{ lesson.name }}</span>
+                                                        </h3>
+                                                        {{ lesson.resume }}
+                                                    </div>
+
+                                                    <a href="{{ path('app_lesson_single', {matter: type.matter.slug, typeNb: type.numbering, chapterNb: chapter.numbering, lessonNb: lesson.numbering, lessonId: lesson.id, typeId: type.id, progressionId: progressionId}) }}"
+                                                       class="btn {% if prog.complete < complete - 1 * (100 / countNumberingLesson) %} btn-outline-info disabled{% else %}btn-info text-white{% endif %}">Commencer
+                                                    </a>
+
+                                                {% endif %}
+                                            {% endfor %}
+
                                         </li>
                                     {% endif %}
                                 {% endfor %}
+
                             </ul>
                         </div>
                     </div>
                 {% endif %}
             {% endfor %}
+
         </div>
     {% endfor %}
 </div>

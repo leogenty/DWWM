@@ -14,22 +14,24 @@
     {{ form_start(form) }}
         <h2 class="text-info">{{ lesson.chapter.numbering }}. {{ lesson.chapter.name }}</h2>
         <h1 class="text-success text-center mb-5">Leçon n°{{ lesson.numbering }} : {{ lesson.name }}</h1>
-        {% set count = 0 %}
-        {% set realNumbering = null %}
+        {% set numberLesson = 0 %}
+        {% set currentLessonNumber = 0 %}
         {% for lessonArray in lessons %}
             {% if lessonArray.chapter.type == lesson.chapter.type %}
-                {% set count = count + 1 %}
+                {% set numberLesson = numberLesson + 1 %}
                 {% if lessonArray.name == lesson.name %}
-                    {% set realNumbering = count %}
+                    {% set currentLessonNumber = numberLesson %}
                 {% endif %}
             {% endif %}
         {% endfor %}
-        {% set complete = realNumbering * (100 / count) %}
+        {% set complete = currentLessonNumber * (100 / numberLesson) %}
 
         {% for block in lesson.blocks %}
             <p class="fs-5">{{ block.content|raw }}</p>
         {% endfor %}
-        {{ form_widget(form.complete, {'value': complete}) }}
+        <div class="d-none">
+            {{ form_widget(form.complete, {'value': complete|round(0, 'ceil')}) }}
+        </div>
         <div class="card">
             <div class="card-body d-flex justify-content-center justify-content-md-between align-items-center">
                 <span class="fs-5 me-2">{{ progression.complete }}%</span>
