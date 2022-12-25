@@ -17,7 +17,7 @@ class ResetPasswordType extends AbstractType
     {
         $builder
             ->add('oldPassword', PasswordType::class, [
-                'label' => 'Ancien mot de passe',
+                'label' => 'Mot de passe actuel',
                 'required' => true,
                 'constraints' => [
                     new Regex([

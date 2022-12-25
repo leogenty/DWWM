@@ -23,7 +23,7 @@
     {% else %}
         <div class="row mb-5">
             <div class="col text-center">
-                <p class="display-6 text-warning">Tu n'est connecté à aucun compte.</p>
+                <p class="display-6 text-warning">Tu n'es connecté à aucun compte.</p>
                 <a class="btn btn-info btn-lg text-light" href="{{ path('app_login') }}">Connexion</a>
             </div>
         </div>
@@ -53,7 +53,7 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="5000">
-                <img src="..." class="d-block w-100" alt="...">
+                <img src="{{ asset('build/medias/images/white_baruu_logo.png') }}" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-md-block">
                     <h5>TODO titre 1</h5>
                 </div>
