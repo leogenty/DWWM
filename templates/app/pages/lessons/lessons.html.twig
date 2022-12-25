@@ -38,6 +38,19 @@
                 {% endif %}
             {% endfor %}
 
+
+            {% for progression in app.user.progressions %}
+                {% if progression.type == type %}
+                    <h2 class="text-warning mb-2">Progression :</h2>
+                    <div class="d-flex justify-content-center justify-content-md-between align-items-center mb-5">
+                        <span class="fs-5 me-2">{{ progression.complete }}%</span>
+                        <div class="progress flex-grow-1 me-3">
+                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-label="Avancement" style="width: {{ progression.complete }}%" aria-valuenow="{{ progression.complete }}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
             {% for chapter in chapters|sort((a, b) => a.numbering <=> b.numbering) %}
                 {% set typeName = type.matter ~ ' : ' ~ type.name %}
                 {% if chapter.type == typeName %}
