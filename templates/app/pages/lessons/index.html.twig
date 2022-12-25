@@ -11,16 +11,16 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="text-success text-center mb-4">Liste des leçons</h1>
-
     {% include 'app/pages/lessons/lessons.html.twig' %}
 
     {# {% include 'app/pages/lessons/annexes.html.twig' %} #}
 
     <div class="row">
         <div class="col text-center">
-            <h4 class="text-center">TODO cours en ligne</h4>
-            <a class="btn btn-warning btn-lg" href="{{ path('app_online_lesson') }}">Cours en ligne</a>
+            <p class="fs-3 text-center">Marre des cours théoriques ? <br>
+                Tu peux toujours aller voir des cours en ligne !
+            </p>
+            <a class="btn btn-warning btn-lg text-light" href="{{ path('app_online_lesson') }}">Cours en ligne</a>
         </div>
     </div>
 {% endblock %}

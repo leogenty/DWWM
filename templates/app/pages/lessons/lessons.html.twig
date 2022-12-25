@@ -4,6 +4,8 @@
 {% endfor %}
 
 {% if countType > 0 %} {# if there is lesson(s), display tabs, else display 'there is no lesson' #}
+    <h1 class="text-success text-center mb-4">Liste des leçons</h1>
+
     <div class="card-body align-self-center mb-4">
         <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
             {% for type in types|sort((a, b) => a.numbering <=> b.numbering) %}
@@ -14,7 +16,7 @@
         </ul>
     </div>
 {% else %}
-    <h3 class="text-center my-5">Aucune leçon n'est disponible dans cette matière.</h3>
+    <p class="fs-2 text-primary text-center my-5">Désolé...<br> Aucune leçon n'est disponible dans cette matière.</p>
 {% endif %}
 
 <div class="tab-content" id="myTabContent">
@@ -87,7 +89,7 @@
                                                     </div>
 
                                                     <a href="{{ path('app_lesson_single', {matter: type.matter.slug, typeNb: type.numbering, chapterNb: chapter.numbering, lessonNb: lesson.numbering, lessonId: lesson.id, typeId: type.id, progressionId: progressionId}) }}"
-                                                       class="btn {% if prog.complete < complete - 1 * (100 / countNumberingLesson) %} btn-outline-info disabled{% else %}btn-info text-white{% endif %}">Commencer
+                                                       class="btn {% if prog.complete < complete - 1 * (100 / countNumberingLesson) %} btn-outline-info disabled{% else %}btn-info text-light{% endif %}">Commencer
                                                     </a>
 
                                                 {% endif %}

@@ -47,6 +47,7 @@ $cyans: () !default;
 
 // scss-docs-start theme-color-variables
 $primary:       #bc002d !default;
+$secondary: #e3e3e3 !default;
 $success:       #33a867 !default; // Was: 198754
 $info:          #21a2da !default; // Was: #0dcaf0
 $warning:       #e39c1b !default; // Was: #ffc107
@@ -58,6 +59,7 @@ $dark:          $gray-900 !default;
 // scss-docs-start theme-colors-map
 $theme-colors: (
         "primary":    $primary,
+        "secondary":  $secondary,
         "success":    $success,
         "info":       $info,
         "warning":    $warning,

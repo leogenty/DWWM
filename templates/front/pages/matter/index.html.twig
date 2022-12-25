@@ -14,12 +14,12 @@
     <h1 class="text-success text-center mb-4">Liste des matières</h1>
 
     {% for message in app.flashes('warning') %}
-        <div class="alert alert-warning">
+        <div class="alert alert-warning fs-4">
             {{ message }}
         </div>
     {% endfor %}
 
-    <h4 class="my-3">Choisis une matière qui te plaît</h4>
+    <p class="fs-4 my-3">Choisis une matière qui te plaît :</p>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-5">
         {% for category in categories %}
