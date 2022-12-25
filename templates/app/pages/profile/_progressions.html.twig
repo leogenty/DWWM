@@ -1,0 +1,33 @@
+{% for progression in progressions %}
+    {% if progression.user == app.user %}
+        <h4 class="text-info">{{ progression.type.matter.name }} : {{ progression.type.name }}</h4>
+        <div class="d-flex justify-content-center justify-content-md-between align-items-center">
+            <span class="fs-6 me-2">{{ progression.complete }}%</span>
+            <div class="progress flex-grow-1 me-3">
+                <div class="progress-bar progress-bar-striped" role="progressbar" aria-label="Avancement" style="width: {{ progression.complete }}%" aria-valuenow="{{ progression.complete }}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <a class="btn btn-sm btn-outline-info" type="button" data-bs-toggle="modal" data-bs-target="#resetModal{{ progression.id }}">
+                <span class="fa-duotone fa-fw fa-rotate-left me-1"></span>Réinitialiser
+            </a>
+
+            <div class="modal fade" id="resetModal{{ progression.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Réinitialiser la progression</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Es-tu sûr de vouloir vraiment remettre à zéro la progression pour "{{ progression.type.matter.name }} : {{ progression.type.name }}" ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
+                            <a type="button" class="btn btn-primary" href="{{ path('app_reset_progression', {progressionId: progression.id}) }}">Remettre à zéro</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="border border-dark mx-auto mt-4 mb-3 w-75">
+    {% endif %}
+{% endfor %}

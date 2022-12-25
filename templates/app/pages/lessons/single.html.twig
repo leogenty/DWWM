@@ -24,7 +24,7 @@
                 {% endif %}
             {% endif %}
         {% endfor %}
-        {% set complete = currentLessonNumber * (100 / numberLesson) %}
+        {% set complete = (currentLessonNumber / numberLesson) * 100 %}
 
         {% for block in lesson.blocks %}
             <p class="fs-5">{{ block.content|raw }}</p>
