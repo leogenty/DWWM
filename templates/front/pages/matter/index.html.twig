@@ -36,16 +36,18 @@
                             <hr class="m-0">
 
                             {% set hasProgression = null %}
-                            {% for type in types %}
-                                {% if matter.name == type.matter %}
-                                    {% set matterType = matter.name ~ ' : ' ~ type.name %}
-                                    {% for prog in app.user.progressions %}
-                                        {% if prog.type == matterType %}
-                                            {% set hasProgression = prog.id %}
-                                        {% endif %}
-                                    {% endfor %}
-                                {% endif %}
-                            {% endfor %}
+                            {% if app.user %}
+                                {% for type in types %}
+                                    {% if matter.name == type.matter %}
+                                        {% set matterType = matter.name ~ ' : ' ~ type.name %}
+                                        {% for prog in app.user.progressions %}
+                                            {% if prog.type == matterType %}
+                                                {% set hasProgression = prog.id %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
 
                             <a class="list-group-item py-2 px-4 fs-4" href="{{ path('app_lessons', {matter: matter.slug, progressionId: hasProgression}) }}">
                                 {{ matter.name }}
