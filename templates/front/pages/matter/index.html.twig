@@ -19,11 +19,9 @@
         </div>
     {% endfor %}
 
-    <p class="fs-4 my-3">Choisis une matière qui te plaît :</p>
-
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-5">
-        {% for category in categories %}
-            <div class="accordion mb-3" id="accordionDescription{{ category.id }}">
+        {% for category in categories|sort((a, b) => a.numbering <=> b.numbering) %}
+            <div class="accordion mb-5" id="accordionDescription{{ category.id }}">
                 <div class="accordion-item">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#id{{ category.id }}" aria-expanded="true" aria-controls="id{{ category.id }}">
                         <h2 class="accordion-header">

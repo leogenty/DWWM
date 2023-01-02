@@ -68,7 +68,8 @@
                                         {% if lesson.chapter.type == chapter.type %}
                                             {% set currentLessonNumber = currentLessonNumber + 1 %}
                                         {% endif %}
-                                        {% set complete = (currentLessonNumber / countNumberingLesson) * 100 %}
+                                        {% set complete = ((currentLessonNumber / countNumberingLesson) * 100) %}
+                                        {{ complete }}
 
                                         <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
                                             {% set progressionId = null %}
@@ -88,9 +89,11 @@
                                                         {{ lesson.resume }}
                                                     </div>
 
-                                                    <a href="{{ path('app_lesson_single', {matter: type.matter.slug, typeNb: type.numbering, chapterNb: chapter.numbering, lessonNb: lesson.numbering, lessonId: lesson.id, typeId: type.id, progressionId: progressionId}) }}"
+                                                    <a href="{{ path('app_lesson_single', {matter: type.matter.slug, typeNb: type.numbering, chapterNb: chapter.numbering, lessonNb: lesson.numbering, lessonId: lesson.id, typeId: type.id, progressionId: progressionId, complete: complete|round(0, 'ceil')}) }}"
                                                        class="btn {% if prog.complete < complete - 1 * (100 / countNumberingLesson) %} btn-outline-info disabled{% else %}btn-info text-light{% endif %}">Commencer
                                                     </a>
+                                                    {{ prog.complete }}
+                                                    {{ complete - 1 * (100 / countNumberingLesson) }}
 
                                                 {% endif %}
                                             {% endfor %}

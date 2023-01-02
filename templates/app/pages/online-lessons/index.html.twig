@@ -25,11 +25,11 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">
-                        {{ onlineLesson.author }}<br>
+                        Créé par : <span class="fs-5 text-decoration-underline">{{ onlineLesson.author }}</span><br>
                         Début : {{ onlineLesson.startAt | format_datetime('full', locale='fr') }}<br>
                         Fin : {{ onlineLesson.endAt | format_datetime('full', locale='fr') }}<br>
                         Nombre de participants : {{ onlineLesson.nbParticipants }}<br>
-                        <a class="btn btn-outline-warning" href="{{ onlineLesson.classLink }}">Lien vers la salle de cours</a>
+                        {# <a class="btn btn-outline-warning" href="{{ onlineLesson.classLink }}">Lien vers la salle de cours</a> #}
                     </p>
                     <div class="accordion mb-3" id="accordionDescription">
                         <div class="accordion-item">

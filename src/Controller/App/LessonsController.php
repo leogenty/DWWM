@@ -61,6 +61,7 @@ class LessonsController extends AbstractController
         $lessonId = $request->get('lessonId');
         $typeId = $request->get('typeId');
         $progressionId = $request->get('progressionId');
+        $complete = $request->get('complete');
 
         $progression = $managerRegistry->getRepository(Progression::class)->find($progressionId);
 
@@ -71,7 +72,7 @@ class LessonsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($progression->getComplete() > $clonedProgression->getComplete()) { // if new progression > to the current one
-                $progression->setComplete($form->get('complete')->getData());
+                $progression->setComplete($complete);
             } else {
                 $progression->setComplete($clonedProgression->getComplete());
             }
@@ -82,6 +83,7 @@ class LessonsController extends AbstractController
         }
 
         return $this->render('app/pages/lessons/single.html.twig', [
+            'complete' => $complete,
             'form' => $form->createView(),
             'types' => $managerRegistry->getRepository(Type::class)->findBy(['matter' => $managerRegistry->getRepository(Matter::class)->findOneBy(['name' => $request->get('matter')])]),
             'lessons' => $managerRegistry->getRepository(Lesson::class)->findAll(),
