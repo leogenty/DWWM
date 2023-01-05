@@ -29,17 +29,14 @@
             {% for chapter in chapters|sort((a, b) => a.numbering <=> b.numbering) %}
                 {% set typeName = type.matter ~ ' : ' ~ type.name %}
                 {% if chapter.type == typeName %}
-
                     {% for lesson in lessons|sort((a, b) => a.numbering <=> b.numbering) %}
                         {% set chapterName = typeName ~ ' : ' ~ chapter.name %}
                         {% if lesson.chapter == chapterName %}
                             {% set countNumberingLesson = countNumberingLesson + 1 %}
                         {% endif %}
                     {% endfor %}
-
                 {% endif %}
             {% endfor %}
-
 
             {% for progression in app.user.progressions %}
                 {% if progression.type == type %}
@@ -64,12 +61,10 @@
                                 {% for lesson in lessons|sort((a, b) => a.numbering <=> b.numbering) %}
                                     {% set chapterName = typeName ~ ' : ' ~ chapter.name %}
                                     {% if lesson.chapter == chapterName %}
-
                                         {% if lesson.chapter.type == chapter.type %}
                                             {% set currentLessonNumber = currentLessonNumber + 1 %}
                                         {% endif %}
                                         {% set complete = ((currentLessonNumber / countNumberingLesson) * 100) %}
-                                        {{ complete }}
 
                                         <li class="list-group-item text-bg-light d-flex justify-content-between align-items-center">
                                             {% set progressionId = null %}
@@ -81,7 +76,6 @@
 
                                             {% for prog in app.user.progressions %}
                                                 {% if prog.id == progressionId %}
-
                                                     <div class="me-auto">
                                                         <h3 class="{% if prog.complete < complete %}text-warning {% else %}text-success{% endif %}">
                                                             Leçon n°{{ lesson.numbering }} - <span class="text-decoration-underline">{{ lesson.name }}</span>
@@ -92,9 +86,6 @@
                                                     <a href="{{ path('app_lesson_single', {matter: type.matter.slug, typeNb: type.numbering, chapterNb: chapter.numbering, lessonNb: lesson.numbering, lessonId: lesson.id, typeId: type.id, progressionId: progressionId, complete: complete|round(0, 'ceil')}) }}"
                                                        class="btn {% if prog.complete < complete - 1 * (100 / countNumberingLesson) %} btn-outline-info disabled{% else %}btn-info text-light{% endif %}">Commencer
                                                     </a>
-                                                    {{ prog.complete }}
-                                                    {{ complete - 1 * (100 / countNumberingLesson) }}
-
                                                 {% endif %}
                                             {% endfor %}
 

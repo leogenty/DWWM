@@ -11,10 +11,10 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="text-success text-center mb-4">Liste des matières</h1>
+    <h1 class="text-success text-center mb-4 animate__animated animate__fadeIn">Liste des matières</h1>
 
     {% for message in app.flashes('warning') %}
-        <div class="alert alert-warning fs-4">
+        <div class="alert alert-warning fs-4 animate__animated animate__pulse">
             {{ message }}
         </div>
     {% endfor %}

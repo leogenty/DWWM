@@ -11,3 +11,5 @@ import 'bootstrap/js/dist/tab'
 // import 'bootstrap/js/dist/toast'
 // import 'bootstrap/js/dist/tooltip'
 import '../../../../styles/security/pages/register/index.scss'
+
+require('animate.css/animate.css')

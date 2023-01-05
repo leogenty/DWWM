@@ -20,6 +20,8 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
+    .addEntry('app_components_navbar', './assets/javascripts/components/_navbar.js')
+
     .addEntry('app_pages_lessons', './assets/javascripts/app/pages/lessons/index.js')
     .addEntry('app_pages_lessons_single', './assets/javascripts/app/pages/lessons/single.js')
     .addEntry('app_pages_online_lessons', './assets/javascripts/app/pages/online-lessons/index.js')

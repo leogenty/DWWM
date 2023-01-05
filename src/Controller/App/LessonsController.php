@@ -33,7 +33,7 @@ class LessonsController extends AbstractController
         foreach ($types as $type) {
             $progressionId = $request->get('progressionId');
 
-            if (null === $progressionId) {  // create progression table foreach types and set complete to 0
+            if (null === $progressionId) {  // if no progression table, create foreach types and set complete to 0
                 $progression = new Progression();
                 $form = $this->createForm(AddProgressionType::class, $progression, ['typeId' => $type]);
                 $form->handleRequest($request);
@@ -71,7 +71,7 @@ class LessonsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($progression->getComplete() > $clonedProgression->getComplete()) { // if new progression > to the current one
+            if ($progression->getComplete() > $clonedProgression->getComplete()) { // if new complete > to the current one
                 $progression->setComplete($complete);
             } else {
                 $progression->setComplete($clonedProgression->getComplete());

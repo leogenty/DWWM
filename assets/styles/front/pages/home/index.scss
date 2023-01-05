@@ -50,3 +50,7 @@
 
 
 // 6. Custom code
+div.container > div > a:hover {
+  animation: pulse;
+  animation-duration: 1s;
+}
