@@ -21,14 +21,6 @@ class LessonsController extends AbstractController
     #[Route('app/lessons/{matter}', name: 'app_lessons')]
     public function index(Request $request, ManagerRegistry $managerRegistry): Response
     {
-        $routeParameters = $request->attributes->get('_route_params');
-
-        if (['matter' => 'redirect'] == $routeParameters) {
-            $this->addFlash('warning', 'Sélectionnez une matière pour accéder aux leçons associées.');
-
-            return $this->redirectToRoute('front_matter');
-        }
-
         $types = $managerRegistry->getRepository(Type::class)->findBy(['matter' => $managerRegistry->getRepository(Matter::class)->findOneBy(['name' => $request->get('matter')])]); // get each type for the current matter
         foreach ($types as $type) {
             $progressionId = $request->get('progressionId');

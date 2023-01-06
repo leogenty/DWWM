@@ -12,16 +12,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto mb-2 mb-xl-0">
                 <li class="nav-item mx-1">
-                    <a class="nav-link pt-3 {% if app.request.get('_route') == 'front_home' %}active{% endif %}" {% if app.request.get('_route') == 'front_home' %}aria-current="page"{% endif%}href="{{ path('front_home') }}"><span style="font-size: 30px;">Accueil</span></a>
+                    <a class="nav-link pt-3 {% if app.request.get('_route') == 'front_home' %}active{% endif %}" {% if app.request.get('_route') == 'front_home' %}aria-current="page"{% endif%}href="{{ path('front_home') }}"><span class="text-light" style="font-size: 30px;">Accueil</span></a>
                 </li>
                 <li class="nav-item mx-1">
-                    <a class="nav-link pt-3 {% if app.request.get('_route') == 'front_matter' %}active{% endif %}" {% if app.request.get('_route') == 'front_matter' %}aria-current="page"{% endif%}href="{{ path('front_matter') }}"><span style="font-size: 30px;">Matières</span></a>
+                    <a class="nav-link pt-3 {% if app.request.get('_route') == 'front_matter' %}active{% endif %}" {% if app.request.get('_route') == 'front_matter' %}aria-current="page"{% endif%}href="{{ path('front_matter') }}"><span class="text-light" style="font-size: 30px;">Matières</span></a>
                 </li>
                 <li class="nav-item mx-1">
-                    <a class="nav-link pt-3 {% if app.request.get('_route') == 'app_lessons' %}active{% endif %}" {% if app.request.get('_route') == 'app_lessons' %}aria-current="page"{% endif%}href="{{ path('app_lessons', {'matter' : 'redirect'}) }}"><span style="font-size: 30px;">Leçons</span></a>
-                </li>
-                <li class="nav-item mx-1">
-                    <a class="nav-link pt-3 {% if app.request.get('_route') == 'app_online_lesson' %}active{% endif %}" {% if app.request.get('_route') == 'app_online_lesson' %}aria-current="page"{% endif%}href="{{ path('app_online_lesson') }}"><span style="font-size: 30px;">Cours en ligne</span></a>
+                    <a class="nav-link pt-3 {% if app.request.get('_route') == 'app_online_lesson' %}active{% endif %}" {% if app.request.get('_route') == 'app_online_lesson' %}aria-current="page"{% endif%}href="{{ path('app_online_lesson') }}"><span class="text-light" style="font-size: 30px;">Cours en ligne</span></a>
                 </li>
             </ul>
         </div>
@@ -29,7 +26,7 @@
             {% if app.user %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span style="font-size: 25px;">Connecté ({{ app.user.name }})</span>
+                        <span class="text-light" style="font-size: 25px;">Connecté ({{ app.user.name }})</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ path('app_profile') }}"><span style="font-size: 20px;">Mon profil</span></a></li>

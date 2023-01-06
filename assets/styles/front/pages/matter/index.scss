@@ -50,14 +50,7 @@
 
 
 // 6. Custom code
-
-div.accordion > div.accordion-item > div.accordion-collapse > a.list-group-item:hover {
-  background-color: $gray-200;
-  color: $success;
-  transition: all .2s ease-in;
-}
-
-.accordion-button:not(.collapsed) {
-  color: $info;
-  background-color: rgba($info, 10%);
+div.border-2:hover {
+  animation: pulse;
+  animation-duration: 1s;
 }

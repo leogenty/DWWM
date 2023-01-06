@@ -11,49 +11,44 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="text-success text-center mb-4 animate__animated animate__fadeIn">Liste des matières</h1>
-
     {% for message in app.flashes('warning') %}
         <div class="alert alert-warning fs-4 animate__animated animate__pulse">
             {{ message }}
         </div>
     {% endfor %}
 
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-5">
+    <h1 class="text-success text-center mb-4 animate__animated animate__fadeIn">Liste des matières</h1>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 gx-5">
         {% for category in categories|sort((a, b) => a.numbering <=> b.numbering) %}
-            <div class="accordion mb-5" id="accordionDescription{{ category.id }}">
-                <div class="accordion-item">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#id{{ category.id }}" aria-expanded="true" aria-controls="id{{ category.id }}">
-                        <h2 class="accordion-header">
-                            {{ category.name }}
-                        </h2>
-                    </button>
-                    {% for matter in matters|sort((a, b) => a.name <=> b.name) %}
-                        {% if matter.category == category.name %}
-                        <div id="id{{ category.id }}" class="accordion-collapse collapse show" data-bs-parent="#accordionDescription{{ category.id }}">
-                            <hr class="m-0">
+            <div class="col">
+                <h2 class="mt-5 text-center">{{ category.name }}</h2>
+                {% for matter in matters|sort((a, b) => a.name <=> b.name) %}
+                    {% if matter.category == category.name %}
 
-                            {% set hasProgression = null %}
-                            {% if app.user %}
-                                {% for type in types %}
-                                    {% if matter.name == type.matter %}
-                                        {% set matterType = matter.name ~ ' : ' ~ type.name %}
-                                        {% for prog in app.user.progressions %}
-                                            {% if prog.type == matterType %}
-                                                {% set hasProgression = prog.id %}
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
-
-                            <a class="list-group-item py-2 px-4 fs-4" href="{{ path('app_lessons', {matter: matter.slug, progressionId: hasProgression}) }}">
-                                {{ matter.name }}
-                            </a>
-                        </div>
+                        {% set hasProgression = null %}
+                        {% if app.user %}
+                            {% for type in types %}
+                                {% if matter.name == type.matter %}
+                                    {% set matterType = matter.name ~ ' : ' ~ type.name %}
+                                    {% for prog in app.user.progressions %}
+                                        {% if prog.type == matterType %}
+                                            {% set hasProgression = prog.id %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
                         {% endif %}
-                    {% endfor %}
-                </div>
+
+                        <div class="mt-2">
+                            <div class="btn border-2 w-100 my-1 py-2 shadow-sm bg-info bg-opacity-10">
+                                <div class="row align-items-center">
+                                    <a class="fs-3 py-3 text-decoration-none text-info" href="{{ path('app_lessons', {matter: matter.slug, progressionId: hasProgression}) }}">{{ matter.name }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
         {% endfor %}
     </div>

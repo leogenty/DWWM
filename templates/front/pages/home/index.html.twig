@@ -20,7 +20,7 @@
         {% endfor %}
 
         {% if app.user %}
-            <p class="text-center fs-2 animate__animated animate__fadeIn">Bienvenue <span class="text-info">{{ app.user.name }}</span> !</p>
+            <p class="fs-2 animate__animated animate__fadeIn">Bienvenue <span class="text-info">{{ app.user.name }}</span> !</p>
         {% else %}
             <div class="row mb-5">
                 <div class="col text-center">
@@ -31,21 +31,25 @@
         {% endif %}
 
         <div class="row fs-3 fw-light text-center my-5 animate__animated animate__fadeInLeft">
-            <div class="col-xl-6 ms-xl-auto align-self-center"><img src="{{ asset('build/medias/images/white_baruu_logo.png') }}"></div>
-            <div class="col-xl-6 ms-xl-auto p-3x">
-                Baruu est un site dédié à <span class="text-decoration-underline">l'apprentissage</span>. Ici le but, c'est de vous faire apprendre ce que vous avez envie d'apprendre.<br><br>
-                Notre plateforme propose ses services à travers différentes matières. On y retrouve essentiellement des leçons, mais également des exercices, et bien d'autre !<br>
+            <div class="col-xl-5 ms-xl-auto align-self-center"><img src="{{ asset('build/medias/images/white_baruu_logo.png') }}"></div>
+            <div class="col-xl-7 ms-xl-auto p-3x">
+                <span class="fs-1">Qu'est-ce dont Baruu ?</span><br><br>
+                C'est un site dédié à <span class="text-decoration-underline">l'apprentissage</span>. Ici le but, c'est de vous faire découvrir ce que vous avez envie d'apprendre.<br><br>
+                Notre plateforme propose ses services à travers différentes matières. On y retrouve essentiellement des leçons, mais également des exercices, et bien d'autre !<br><br>
+                Si tu veux voir le catalogue des matières, <a class="text-info" href="{{ path('app_online_lesson') }}"> c'est par ici</a> !<br>
+                <a class="btn btn-success btn-lg text-light my-4" href="{{ path('front_matter') }}">Apprendre</a>
             </div>
         </div>
     </div>
     <div class="bg-secondary py-4">
         <div class="container row fs-3 fw-light mx-auto text-center my-5 animate__animated animate__fadeInRight animate__delay-1s">
             <div class="col-xl-5 ms-xl-auto p-3">
-                Baruu met également à disposition des cours en ligne. En plus, c'est fait par des professionnels qui sont certifiés par la plateforme.<br><br>
-                Si tu veux voir les matières qu'on propose, c'est par ici !<br>
-                <a class="btn btn-success btn-lg text-light my-4" href="{{ path('front_matter') }}">Apprendre</a>
+                <span class="fs-1">Mais c'est pas tout...</span><br><br>
+                Baruu met également à disposition des cours en ligne. Ça te permet d'apprendre en direct à plusieurs !<br><br>
+                En plus, c'est fait par des professionnels qui sont certifiés par la plateforme.<br><br>
+                <a class="btn btn-info btn-lg text-light my-4" href="{{ path('app_online_lesson') }}">Cours en ligne</a>
             </div>
-            <div class="col-xl-7 ms-xl-auto align-self-center"><img src="{{ asset('build/medias/images/white_baruu_logo.png') }}" class="d-block w-100" alt="..."></div>
+            <div class="col-xl-7 ms-xl-auto align-self-center bg-image hover-zoom hover-shadow"><img src="{{ asset('build/medias/images/white_baruu_logo.png') }}" class="d-block w-100" alt="..."></div>
         </div>
     </div>
 
@@ -82,10 +86,8 @@
             </button>
         </div>
 
-    <div class="container">
         <div class="fs-3 fw-light text-center my-5 animate__animated animate__fadeIn animate__delay-1s">
-            Baruu reste un site d'apprentissage général. Chaque matière vous offre des bases non-négligeables.
-            Vous ne trouverez pas de matières très spécifiques parmi le catalogue que nous proposons.<br><br>
+            Baruu reste avant tout un site d'apprentissage général.<br>Chaque matière disposent de bases non-négligeables.<br><br>
             N'oublie pas les cours en ligne que tu peux consulter à tout moment.<br>
             <a class="btn btn-info btn-lg text-light my-3" href="{{ path('app_online_lesson') }}">Cours en ligne</a>
         </div>
