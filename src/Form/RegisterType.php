@@ -32,23 +32,27 @@ class RegisterType extends AbstractType
                         'message' => 'Votre mot de passe doit faire 8 caractères minimum utilisant majuscule(s), minuscule(s) et chiffre(s).',
                     ]),
                 ],
+                'attr' => [
+                    'id' => 'show_hide_password',
+                ],
             ])
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
                 'attr' => [
-                    'placeholder' => 'Jean',
+                    'placeholder' => 'Prénom',
                 ],
             ])
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
                 'attr' => [
-                    'placeholder' => 'Eude',
+                    'placeholder' => 'Nom',
                 ],
             ])
             ->add('name', TextType::class, [
                 'label' => 'Nom d\'utilisateur (visible publiquement)',
                 'attr' => [
                     'placeholder' => 'utilisateur',
+                    'maxlength' => 20,
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [

@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="text-info text-center mb-3">Créer ton compte</h1>
+    <h1 class="text-info text-center mb-3 animate__animated animate__fadeIn">Créer ton compte</h1>
 
     {{ form_start(form) }}
     <div class="card bg-light mx-auto w-50 mt-3 mb-5">
@@ -36,7 +36,15 @@
             </div>
             <div class="row">
                 <div class="col-12 col-md-8 fs-4">
-                    {{ form_row(form.password) }}
+                    <div class="mb-3">
+                        <label for="register_password" class="form-label required">Mot de passe</label>
+                        <div class="input-group" id="show_hide_password">
+                            {{ form_widget(form.password) }}
+                            <div class="input-group-text">
+                                <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             {{ form_row(form.agreeTerms) }}
