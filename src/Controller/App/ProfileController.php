@@ -15,7 +15,7 @@ class ProfileController extends AbstractController
     public function index(ManagerRegistry $managerRegistry): Response
     {
         return $this->render('app/pages/profile/index.html.twig', [
-            'progressions' => $managerRegistry->getRepository(Progression::class)->findAll(),
+            'progressions' => $managerRegistry->getRepository(Progression::class)->findBy(['user' => $this->getUser()->getId()]),
         ]);
     }
 
@@ -29,8 +29,6 @@ class ProfileController extends AbstractController
         $managerRegistry->getManager()->persist($progression);
         $managerRegistry->getManager()->flush();
 
-        return $this->render('app/pages/profile/index.html.twig', [
-            'progressions' => $managerRegistry->getRepository(Progression::class)->findAll(),
-        ]);
+        return $this->redirectToRoute('app_profile');
     }
 }

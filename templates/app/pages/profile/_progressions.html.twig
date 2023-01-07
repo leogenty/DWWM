@@ -1,5 +1,7 @@
-{% for progression in progressions %}
-    {% if progression.user == app.user %}
+{% if progressions is empty %}
+    <h4 class="text-info">Vous n'avez commencé aucune matière.</h4>
+{% else %}
+    {% for progression in progressions %}
         <h4 class="text-info">{{ progression.type.matter.name }} : {{ progression.type.name }}</h4>
         <div class="d-flex justify-content-center justify-content-md-between align-items-center">
             <span class="fs-6 me-2">{{ progression.complete }}%</span>
@@ -29,8 +31,5 @@
             </div>
         </div>
         <hr class="border border-dark mx-auto mt-4 mb-3 w-75">
-    {% endif %}
-{% endfor %}
-<h4 class="text-info">Vous n'avez commencé aucune matière.</h4>
-// TODO
-// controller : return only progressions from user ->findOneBy($user)
+    {% endfor %}
+{% endif %}
