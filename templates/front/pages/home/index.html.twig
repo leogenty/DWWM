@@ -19,9 +19,7 @@
             </div>
         {% endfor %}
 
-        {% if app.user %}
-            <p class="fs-2 animate__animated animate__fadeIn">Bienvenue <span class="text-info">{{ app.user.name }}</span> !</p>
-        {% else %}
+        {% if not app.user %}
             <div class="row mb-5">
                 <div class="col text-center">
                     <p class="display-6 text-warning animate__animated animate__pulse">Tu n'es connecté à aucun compte.</p>
@@ -86,7 +84,7 @@
             </button>
         </div>
 
-        <div class="fs-3 fw-light text-center my-5 animate__animated animate__fadeIn animate__delay-1s">
+        <div class="fs-3 fw-light text-center my-5 animate__animated element-to-fadeInUp">
             Baruu reste avant tout un site d'apprentissage général.<br>Chaque matière disposent de bases non-négligeables.<br><br>
             N'oublie pas les cours en ligne que tu peux consulter à tout moment.<br>
             <a class="btn btn-info btn-lg text-light my-3" href="{{ path('app_online_lesson') }}">Cours en ligne</a>
