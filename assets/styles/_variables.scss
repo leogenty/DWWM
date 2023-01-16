@@ -96,17 +96,9 @@ $grid-breakpoints: (
 ) !default;
 
 $container-max-widths: (
-        sm: 540px,
-        md: 720px,
-        lg: 960px,
-        xl: 1140px,
-        xxl: 1200px
+        sm: 540px,  //default 540
+        md: 720px,  //default 720
+        lg: 960px,  //default 960
+        xl: 1200px, //default 1140
+        xxl: 1400px //default 1200
 ) !default;
-
-$navbar-dark-color:                 rgba($white, .65) !default;
-$navbar-dark-hover-color:           rgba($white, .75) !default;
-$navbar-dark-active-color:          $white !default;
-$navbar-dark-disabled-color:        rgba($white, .25) !default;
-$navbar-dark-toggler-border-color:  rgba($white, .1) !default;
-$navbar-dark-brand-color:           $navbar-dark-active-color !default;
-$navbar-dark-brand-hover-color:     $navbar-dark-active-color !default;

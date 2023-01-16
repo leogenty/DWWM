@@ -83,7 +83,16 @@
                                                         {{ lesson.resume }}
                                                     </div>
 
-                                                    <a href="{{ path('app_lesson_single', {matter: type.matter.slug, typeNb: type.numbering, chapterNb: chapter.numbering, lessonNb: lesson.numbering, lessonId: lesson.id, typeId: type.id, progressionId: progressionId, complete: complete|round(0, 'ceil')}) }}"
+                                                    <a href="{{ path('app_lesson_single', {
+                                                        matter: type.matter.slug,
+                                                        typeNb: type.numbering,
+                                                        chapterNb: chapter.numbering,
+                                                        lessonNb: lesson.numbering,
+                                                        lessonId: lesson.id,
+                                                        typeId: type.id,
+                                                        progressionId: progressionId,
+                                                        complete: complete|round(0, 'ceil')
+                                                    }) }}"
                                                        class="btn {% if prog.complete < complete - 1 * (100 / countNumberingLesson) %} btn-outline-info disabled{% else %}btn-info text-light{% endif %}">Commencer
                                                     </a>
                                                 {% endif %}
