@@ -3,12 +3,12 @@
   animation-duration: 1s;
 }
 
-.nav-link {
+#header > .nav-link {
   transition: 0.3s ease;
   border-bottom: 6px solid transparent;
 }
 
-.nav-link:hover {
+#header > .nav-link:hover {
   animation: pulse;
   animation-duration: 1s;
   border-bottom: 4px solid whitesmoke;

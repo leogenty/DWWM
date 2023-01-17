@@ -50,3 +50,7 @@
 
 
 // 6. Custom code
+.nav-link:hover {
+  animation: pulse;
+  animation-duration: 1s;
+}

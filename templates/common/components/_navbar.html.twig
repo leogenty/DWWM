@@ -11,20 +11,20 @@
         <a class="navbar-brand m-0 p-0" href="{{ path('front_home') }}"><img src="{{ asset('build/medias/images/BARUU_logo.webp') }}" style="width: 158px; height: 50px;"></a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto mb-2 mb-xl-0">
-                <li class="nav-item mx-2">
+                <li class="nav-item mx-2" id="header">
                     <a class="nav-link pt-3 {% if app.request.get('_route') == 'front_home' %}active{% endif %}" {% if app.request.get('_route') == 'front_home' %}aria-current="page"{% endif%}href="{{ path('front_home') }}"><span class="text-light" style="font-size: 30px;">Accueil</span></a>
                 </li>
-                <li class="nav-item mx-2">
+                <li class="nav-item mx-2" id="header">
                     <a class="nav-link pt-3 {% if app.request.get('_route') == 'front_matter' %}active{% endif %}" {% if app.request.get('_route') == 'front_matter' %}aria-current="page"{% endif%}href="{{ path('front_matter') }}"><span class="text-light" style="font-size: 30px;">Matières</span></a>
                 </li>
-                <li class="nav-item mx-2">
+                <li class="nav-item mx-2" id="header">
                     <a class="nav-link pt-3 {% if app.request.get('_route') == 'app_online_lesson' %}active{% endif %}" {% if app.request.get('_route') == 'app_online_lesson' %}aria-current="page"{% endif%}href="{{ path('app_online_lesson') }}"><span class="text-light" style="font-size: 30px;">Cours en ligne</span></a>
                 </li>
             </ul>
         </div>
         <ul class="navbar-nav pt-2">
             {% if app.user %}
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" id="header">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="text-light" style="font-size: 25px;">Connecté ({{ app.user.name }})</span>
                     </a>
@@ -35,10 +35,10 @@
                     </ul>
                 </li>
             {% else %}
-                <li class="nav-item">
+                <li class="nav-item" id="header">
                     <a class="nav-link {% if app.request.get('_route') == 'app_login' %}active{% endif %}" {% if app.request.get('_route') == 'app_login' %}aria-current="page"{% endif%}href="{{ path('app_login') }}"><span style="font-size: 26px;">Se connecter</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="header">
                     <a class="nav-link {% if app.request.get('_route') == 'app_register' %}active{% endif %}" {% if app.request.get('_route') == 'app_register' %}aria-current="page"{% endif%}href="{{ path('app_register') }}"><span style="font-size: 26px;">S'inscrire</span></a>
                 </li>
             {% endif %}
