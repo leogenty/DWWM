@@ -41,9 +41,9 @@
                         {% endif %}
 
                         <div class="mt-2">
-                            <div class="btn border-2 w-100 my-1 py-2 shadow-sm bg-info bg-opacity-10">
+                            <div class="btn w-100 my-1 py-2 shadow-sm">
                                 <div class="row align-items-center">
-                                    <a class="fs-3 py-3 text-decoration-none text-info" href="{{ path('app_lessons', {matter: matter.slug, progressionId: hasProgression}) }}">{{ matter.name }}</a>
+                                    <a class="fs-3 py-3 text-decoration-none" href="{{ path('app_lessons', {matter: matter.slug, progressionId: hasProgression}) }}">{{ matter.name }}</a>
                                 </div>
                             </div>
                         </div>

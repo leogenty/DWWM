@@ -15,15 +15,15 @@ import '../../../../styles/front/pages/home/index.scss'
 require('animate.css/animate.css')
 
 // animate on scroll
-const animatedElement1 = document.querySelectorAll('.element-to-fadeInRight');
-const animatedElement2 = document.querySelectorAll('.element-to-fadeInUp');
+const fadeInRightAnimations = document.querySelectorAll('.element-to-fadeInRight');
+const fadeInUpAnimations = document.querySelectorAll('.element-to-fadeInUp');
 
 function checkIfInView() {
     const windowHeight = window.innerHeight;
     const windowTopPosition = window.scrollY;
     const windowBottomPosition = (windowTopPosition + windowHeight);
 
-    animatedElement1.forEach(el => {
+    fadeInRightAnimations.forEach(el => {
         const elementHeight = el.offsetHeight;
         const elementTopPosition = el.offsetTop;
         const elementBottomPosition = (elementTopPosition + elementHeight);
@@ -34,7 +34,7 @@ function checkIfInView() {
             el.classList.add('animate__fadeInRight');
         }
     });
-    animatedElement2.forEach(el => {
+    fadeInUpAnimations.forEach(el => {
         const elementHeight = el.offsetHeight;
         const elementTopPosition = el.offsetTop;
         const elementBottomPosition = (elementTopPosition + elementHeight);

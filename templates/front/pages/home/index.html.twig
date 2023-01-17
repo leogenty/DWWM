@@ -19,44 +19,35 @@
             </div>
         {% endfor %}
 
-        {% if not app.user %}
-            <div class="row mb-5">
-                <div class="col text-center">
-                    <p class="display-6 text-warning animate__animated animate__pulse">Tu n'es connecté à aucun compte.</p>
-                    <a class="btn btn-info btn-lg text-light" href="{{ path('app_login') }}">Connexion</a>
-                </div>
-            </div>
-        {% endif %}
-
-        <div class="row fs-3 fw-light text-center my-5 animate__animated animate__fadeInLeft">
+        <div class="row fs-3 fw-light my-5 animate__animated animate__fadeInLeft">
             <div class="col-xl-7 ms-xl-auto align-self-center">
-                <img src="{{ asset('build/medias/images/img_home_a.webp') }}" style="width: 100%;">
+                <img src="{{ asset('build/medias/images/img_home_a.webp') }}" style="width: 100%;" alt="People Learning Online">
             </div>
-            <div class="col-xl-5 ms-xl-auto p-3x">
+            <div class="col-xl-5 ms-xl-auto p-3x text-center">
                 <span class="fs-1">Qu'est-ce dont Baruu ?</span><br><br>
                 C'est un site dédié à <span class="text-decoration-underline">l'apprentissage</span>. Ici le but, c'est de vous faire découvrir ce que vous avez envie d'apprendre.<br><br>
                 Notre plateforme propose ses services à travers différentes matières. On y retrouve essentiellement des leçons, mais également des exercices, et bien d'autre !<br><br>
-                Si tu veux voir le catalogue des matières, <a class="text-info" href="{{ path('app_online_lesson') }}"> c'est par ici</a> !<br>
+                Si tu veux voir le catalogue des<br>matières, <a class="text-info" href="{{ path('front_matter') }}"> c'est par ici</a> !<br>
                 <a class="btn btn-success btn-lg text-light my-4" href="{{ path('front_matter') }}">Apprendre</a>
             </div>
         </div>
     </div>
     <div class="bg-secondary py-4">
-        <div class="container row fs-3 fw-light mx-auto text-center my-5 animate__animated animate__fadeInRight animate__delay-1s">
-            <div class="col-xl-5 ms-xl-auto p-3">
+        <div class="container row fs-3 fw-light mx-auto my-5 animate__animated animate__fadeInRight animate__delay-1s">
+            <div class="col-xl-5 ms-xl-auto p-3 text-center">
                 <span class="fs-1">Mais ce n'est pas tout...</span><br><br>
-                Baruu met également à disposition des cours en ligne. Ça te permet d'apprendre en direct à plusieurs !<br><br>
+                Baruu met également à disposition des<br>cours en ligne. Ça te permet d'apprendre<br>en direct et à plusieurs !<br><br>
                 En plus, c'est fait par des professionnels qui sont certifiés par la plateforme.<br><br>
                 <a class="btn btn-info btn-lg text-light my-4" href="{{ path('app_online_lesson') }}">Cours en ligne</a>
             </div>
             <div class="col-xl-7 ms-xl-auto align-self-center bg-image hover-zoom hover-shadow">
-                <img src="{{ asset('build/medias/images/img_home_b.webp') }}" style="width: 100%;" alt="">
+                <img src="{{ asset('build/medias/images/img_home_b.webp') }}" style="width: 100%;" alt="People Attending Online Class">
             </div>
         </div>
     </div>
 
-    <div class="container-fluid">
-        <div id="carouselExampleDark" class="carousel carousel-dark slide my-5" data-bs-ride="carousel">
+    <div class="container-fluid my-5">
+        <div id="carouselExampleDark" class="carousel carousel-dark slide animate__animated element-to-fadeInUp" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -64,15 +55,15 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="3000">
-                    <img src="{{ asset('build/medias/images/img_home_1.webp') }}" class="d-block" style="width: 100%" alt="...">
+                    <img src="{{ asset('build/medias/images/img_home_1.webp') }}" class="d-block" style="width: 100%" alt="Somebody Learning">
                     <div class="carousel-caption d-md-block"></div>
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
-                    <img src="{{ asset('build/medias/images/img_home_2.webp') }}" class="d-block" style="width: 100%" alt="...">
+                    <img src="{{ asset('build/medias/images/img_home_2.webp') }}" class="d-block" style="width: 100%" alt="Somebody Learning">
                     <div class="carousel-caption d-md-block"></div>
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
-                    <img src="{{ asset('build/medias/images/img_home_3.webp') }}" class="d-block" style="width: 100%" alt="...">
+                    <img src="{{ asset('build/medias/images/img_home_3.webp') }}" class="d-block" style="width: 100%" alt="Somebody Learning">
                     <div class="carousel-caption d-md-block"></div>
                 </div>
             </div>
@@ -87,9 +78,20 @@
         </div>
     </div>
 
-    <div class="fs-3 fw-light text-center my-5 animate__animated element-to-fadeInUp">
-        Baruu reste avant tout un site d'apprentissage général.<br>Chaque matière disposent de bases non-négligeables.<br><br>
-        N'oublie pas les cours en ligne que tu peux consulter à tout moment.<br>
-        <a class="btn btn-info btn-lg text-light my-3" href="{{ path('app_online_lesson') }}">Cours en ligne</a>
+    <div class="container">
+        <div class="fs-3 fw-light text-center my-5 animate__animated element-to-fadeInUp">
+            Baruu est conçu pour vous aider à <span class="text-decoration-underline">atteindre vos objectifs académiques</span>.<br><br>
+            Que vous cherchez à étendre vos connaissances, à vous préparer pour un examen<br>ou à apprendre quelque chose de nouveau, vous avez trouvé le bon endroit !<br><br>
+            Rejoignez notre communauté en ligne d'étudiants et de professeurs<br>et accédez à des <a class="text-info" href="{{ path('app_online_lesson') }}">cours en ligne</a> de qualité supérieure.
+        </div>
+
+        {% if not app.user %}
+            <div class="row mb-5">
+                <div class="col text-center">
+                    <p class="display-6 text-warning animate__animated animate__pulse">Tu n'es connecté à aucun compte.</p>
+                    <a class="btn btn-info btn-lg text-light" href="{{ path('app_login') }}">Rejoindre la communauté</a>
+                </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

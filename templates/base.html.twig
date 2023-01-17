@@ -3,10 +3,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <title>{% if page_title is defined %} {{ page_title }} | {% endif %} Baruu</title>
+        <meta name="description" content="C'est un site dédié à l'apprentissage. Ici le but, c'est de vous faire découvrir ce que vous avez envie d'apprendre.">
+
         {% block stylesheets %}{% endblock %}
-        <script src="https://kit.fontawesome.com/94a36ec1da.js" crossorigin="anonymous"></script>
         {% block javascripts %}{% endblock %}
+        <script src="https://kit.fontawesome.com/94a36ec1da.js" crossorigin="anonymous"></script>
     </head>
     <body>
         {% include 'common/components/_navbar.html.twig' %}

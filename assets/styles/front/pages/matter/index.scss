@@ -50,7 +50,19 @@
 
 
 // 6. Custom code
-div.border-2:hover {
+div.btn {
+  background-color: rgba($info, 0.12);
+  div > a {
+    color: $info;
+  }
+}
+
+div.btn:hover {
   animation: pulse;
   animation-duration: 1s;
+  background-color: rgba($success, 0.15);
+  transition: 300ms ease;
+  div > a {
+    color: $success;
+  }
 }
