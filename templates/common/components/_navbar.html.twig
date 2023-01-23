@@ -26,7 +26,7 @@
             {% if app.user %}
                 <li class="nav-item dropdown" id="header">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="text-light" style="font-size: 25px;">Connecté ({{ app.user.name }})</span>
+                        <span class="fa-solid fa-user me-1"></span><span class="text-light">Connecté ({{ app.user.name }})</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ path('app_profile') }}"><span style="font-size: 20px;">Mon profil</span></a></li>

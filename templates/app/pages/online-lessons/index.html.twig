@@ -18,9 +18,9 @@
         <div class="col">
             <div class="card text-bg-light mb-3">
                 <div class="card-header">
-                    <h4 class="card-title text-success text-decoration-underline me-auto">{{ onlineLesson.matter}} : {{ onlineLesson.title }}</h4>
+                    <h4 class="card-title text-info me-auto"><span class="text-decoration-underline">{{ onlineLesson.matter}} :</span> {{ onlineLesson.title }}</h4>
                     {% for language in onlineLesson.getLanguage() %}
-                            <h5><span class="badge text-bg-info text-light h-100">{{ language.name }}</span></h5>
+                        <p class="fs-6 badge text-bg-warning text-light h-100 mb-1">{{ language.name }}</p>
                     {% endfor %}
                 </div>
                 <div class="card-body">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="text-center"><a class="btn btn-lg btn-info text-light" href="">Participer</a></div>
+                    <div class="text-center"><a class="btn btn-lg btn-success text-light" href="">Participer</a></div>
                 </div>
             </div>
         </div>

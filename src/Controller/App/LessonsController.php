@@ -21,11 +21,12 @@ class LessonsController extends AbstractController
     #[Route('app/lessons/{matter}', name: 'app_lessons')]
     public function index(Request $request, ManagerRegistry $managerRegistry): Response
     {
+        $user = $this->getUser();
         $types = $managerRegistry->getRepository(Type::class)->findBy(['matter' => $managerRegistry->getRepository(Matter::class)->findOneBy(['name' => $request->get('matter')])]); // get each type for the current matter
         foreach ($types as $type) {
             $progressionId = $request->get('progressionId');
 
-            if (null === $progressionId) {  // if no progression table, create foreach types and set complete to 0
+            if (null !== $user && null === $progressionId) {  // if no progression table, create foreach types and set complete to 0
                 $progression = new Progression();
                 $form = $this->createForm(AddProgressionType::class, $progression, ['typeId' => $type]);
                 $form->handleRequest($request);

@@ -46,7 +46,7 @@
         </div>
     </div>
 
-    <div class="container-fluid my-5">
+    <div class="container my-5">
         <div id="carouselExampleDark" class="carousel carousel-dark slide animate__animated element-to-fadeInUp" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -78,15 +78,15 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="fs-3 fw-light text-center my-5 animate__animated element-to-fadeInUp">
+    <div class="container my-5">
+        <div class="fs-3 fw-light text-center my-5 animate__animated element-to-fadeIn">
             Baruu est conçu pour vous aider à <span class="text-decoration-underline">atteindre vos objectifs académiques</span>.<br><br>
             Que vous cherchez à étendre vos connaissances, à vous préparer pour un examen<br>ou à apprendre quelque chose de nouveau, vous avez trouvé le bon endroit !<br><br>
             Rejoignez notre communauté en ligne d'étudiants et de professeurs<br>et accédez à des <a class="text-info" href="{{ path('app_online_lesson') }}">cours en ligne</a> de qualité supérieure.
         </div>
 
         {% if not app.user %}
-            <div class="row mb-5">
+            <div class="row my-5">
                 <div class="col text-center">
                     <p class="display-6 text-warning animate__animated animate__pulse">Tu n'es connecté à aucun compte.</p>
                     <a class="btn btn-info btn-lg text-light" href="{{ path('app_login') }}">Rejoindre la communauté</a>

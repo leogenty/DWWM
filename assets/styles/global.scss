@@ -12,3 +12,14 @@ svg.fa-instagram:hover {
   color: #E1306C;
   transition: all .2s ease-in;
 }
+
+@media (max-width: 480px) {
+  .container {
+    // padding créer un espace à droite au format téléphone lorsqu'on dézoome
+    // padding: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}

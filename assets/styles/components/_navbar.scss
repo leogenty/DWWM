@@ -6,6 +6,19 @@
 #header > .nav-link {
   transition: 0.3s ease;
   border-bottom: 6px solid transparent;
+  span.text-light {
+    font-size: 22px;
+  }
+  @media (max-width: 500px) {
+    span.text-light {
+      font-size: 16px;
+    }
+  }
+  @media (max-width: 440px) {
+    span.text-light {
+      display: none;
+    }
+  }
 }
 
 #header > .nav-link:hover {

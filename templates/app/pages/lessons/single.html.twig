@@ -12,7 +12,7 @@
 
 {% block body %}
     {{ form_start(form) }}
-        <h2 class="text-info">{{ lesson.chapter.numbering }}. {{ lesson.chapter.name }}</h2>
+        <h2 class="text-info">{{ lesson.chapter.numbering }}. <span class="text-decoration-underline">{{ lesson.chapter.name }}</span></h2>
         <h1 class="text-success text-center mb-5">Leçon n°{{ lesson.numbering }} : {{ lesson.name }}</h1>
         {% for block in lesson.blocks %}
             <div class="container fs-5 mb-5">

@@ -16,7 +16,7 @@ require('animate.css/animate.css')
 
 // animate on scroll
 const fadeInRightAnimations = document.querySelectorAll('.element-to-fadeInRight');
-const fadeInUpAnimations = document.querySelectorAll('.element-to-fadeInUp');
+const fadeInAnimations = document.querySelectorAll('.element-to-fadeIn');
 
 function checkIfInView() {
     const windowHeight = window.innerHeight;
@@ -34,7 +34,7 @@ function checkIfInView() {
             el.classList.add('animate__fadeInRight');
         }
     });
-    fadeInUpAnimations.forEach(el => {
+    fadeInAnimations.forEach(el => {
         const elementHeight = el.offsetHeight;
         const elementTopPosition = el.offsetTop;
         const elementBottomPosition = (elementTopPosition + elementHeight);
@@ -42,7 +42,7 @@ function checkIfInView() {
         // check if this current element is within viewport
         if ((elementBottomPosition >= windowTopPosition) &&
             (elementTopPosition <= windowBottomPosition)) {
-            el.classList.add('animate__fadeInUp');
+            el.classList.add('animate__fadeIn');
         }
     });
 }

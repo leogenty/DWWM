@@ -82,7 +82,7 @@ $escaped-characters: (
 //
 // Quickly modify global styling by enabling or disabling optional features.
 
-$enable-shadows:              true !default;
+$enable-shadows: true !default;
 
 $container-padding-x: 5rem !default;
 
@@ -96,7 +96,7 @@ $grid-breakpoints: (
 ) !default;
 
 $container-max-widths: (
-        sm: 540px,  //default 540
+        sm: 650px,  //default 540
         md: 720px,  //default 720
         lg: 960px,  //default 960
         xl: 1200px, //default 1140
